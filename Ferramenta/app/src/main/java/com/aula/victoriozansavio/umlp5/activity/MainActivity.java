@@ -1,6 +1,9 @@
 package com.aula.victoriozansavio.umlp5.activity;
 
 
+import android.content.res.ColorStateList;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.Sketch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import processing.android.CompatUtils;
@@ -33,13 +37,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView ivInclude;
     ImageView ivExtend;
     ImageView ivAnotation;
+    ArrayList<ImageView> toolsIcons = new ArrayList<>();
+
     String text = "";
 
     private Sketch sketch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_2);
         //setContentView(com.aula.victoriozansavio.umlp5.R.layout.activity_main);
         initViews();
         FrameLayout frame = findViewById(R.id.container);
@@ -70,6 +76,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ivExtend.setOnClickListener(this);
         ivAnotation.setOnClickListener(this);
 
+        toolsIcons.add(ivUseCase);
+        toolsIcons.add(ivPointer);
+        toolsIcons.add(ivActor);
+        toolsIcons.add(ivInclude);
+        toolsIcons.add(ivExtend);
+        toolsIcons.add(ivAnotation);
         /*tvUseCase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,23 +95,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId() == ivUseCase.getId()){
             sketch.modifyActions("usecase");
+            changeTint(ivUseCase);
         }else if(view.getId() == ivPointer.getId()){
             sketch.modifyActions("pointer");
+            changeTint(ivPointer);
         }else if(view.getId() == ivActor.getId()){
             sketch.modifyActions("actor");
+            changeTint(ivActor);
         }else if(view.getId() == ivInclude.getId()){
             sketch.modifyActions("include");
             sketch.clearTemp();
+            changeTint(ivInclude);
         }else if(view.getId() == ivExtend.getId()){
             sketch.modifyActions("extend");
             sketch.clearTemp();
+            changeTint(ivExtend);
         }else if(view.getId() == ivAnotation.getId()){
             sketch.modifyActions("anotation");
             sketch.clearTemp();
-
+            changeTint(ivAnotation);
         }
 
         sketch.wichIsTrue(getBaseContext());
     }
 
+    private void changeTint(ImageView view) {
+        view.setColorFilter(ContextCompat.getColor(getBaseContext(),
+                R.color.tint_yellow));
+        ImageViewCompat.setImageTintList(view, ColorStateList.valueOf(getResources().getColor(R.color.tint_yellow)));
+        for (ImageView imgView : toolsIcons) {
+            if(imgView.getId() != view.getId())
+                imgView.setColorFilter(ContextCompat.getColor(getBaseContext(),
+                        android.R.color.white));
+
+        }
+    }
 }

@@ -6,6 +6,7 @@
     <dimen name="wecome_paddingtop">10dp</dimen>
     <dimen name="menu_button_size_width">62dp</dimen>
     <dimen name="menu_button_size_height">45dp</dimen>
-    <dimen name="menu_font_size">12sp</dimen>
+    <dimen name="menu_font_size">16sp</dimen>
+    <dimen name="base_margin">10dp</dimen>
 
 </resources>
