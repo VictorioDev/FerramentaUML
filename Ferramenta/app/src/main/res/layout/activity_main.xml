@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="13"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:weightSum="2"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_main_voltar"
+                android:src="@drawable/ic_italic_text_icon_icons_com_71455"
+                android:layout_alignParentLeft="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_main_voltar"
+                android:text="Voltar"
+                android:layout_alignTop="@id/iv_main_voltar"
+                android:layout_alignBottom="@id/iv_main_voltar"
+                android:gravity="center_vertical"
+                />
+
+            <ImageView
+                android:id="@+id/ic_main_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_italic_text_icon_icons_com_71455"
+                android:layout_alignParentRight="true"
+                android:layout_toLeftOf="@id/ic_main_hambu"
+                />
+
+            <ImageView
+                android:id="@+id/ic_main_hambu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_italic_text_icon_icons_com_71455"
+                android:layout_alignParentRight="true"
+                />
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:padding="3dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal |center_vertical"
+        android:weightSum="7"
+        >
+
+        <ImageView
+            android:id="@+id/ivPointer"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cursor"
+            android:padding="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/ivUseCase"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_case"
+            android:padding="10dp"
+            />
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivActor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_actor"
+            android:padding="10dp"
+            />
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivAssociation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow"
+            android:padding="10dp"
+            />
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivAnotation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_annotation"
+            android:padding="10dp"
+            />
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivInclude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_include"
+            android:padding="10dp"
+            />
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivExtend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_extend"
+            android:padding="10dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

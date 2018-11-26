@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Aula01082018</string>
+    <string name="action_settings">Settings</string>
+    <string name="welcome">Welcome to Android App Development</string>
+    <string name="android_logo">Android Logo</string>
+    <string name="deitel_logo">Deitel double-thubs-up bug logo</string>
+
+</resources>
