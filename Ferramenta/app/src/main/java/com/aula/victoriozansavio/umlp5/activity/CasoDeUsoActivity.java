@@ -4,32 +4,20 @@ package com.aula.victoriozansavio.umlp5.activity;
 import android.content.res.ColorStateList;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ImageViewCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.Sketch;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import processing.android.CompatUtils;
 import processing.android.PFragment;
-import processing.core.PApplet;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageView ivUseCase;
     ImageView ivPointer;
@@ -45,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_2);
-        //setContentView(com.aula.victoriozansavio.umlp5.R.layout.activity_main);
+        setContentView(R.layout.activity_caso_de_uso);
+        //setContentView(com.aula.victoriozansavio.umlp5.R.layout.activity_caso_de_uso);
         initViews();
         FrameLayout frame = findViewById(R.id.container);
         //frame.setId(CompatUtils.getUniqueViewId());
@@ -56,10 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sketch = new Sketch(this);
         PFragment fragment = new PFragment(sketch);
         fragment.setView(frame, this);
-
-
-
-
     }
 
     private void initViews(){

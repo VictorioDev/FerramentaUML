@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aula.victoriozansavio.umlp5.activity.RecuperarSenhaActivity"
+    android:padding="16dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/rec_senha_tvAlterar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Alterar sua senha!"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/rec_senha_edt1"
+        android:hint="Digite a senha..."
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rec_senha_tvAlterar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"/>
+
+    <ImageView
+        android:id="@+id/rec_senha_imgViewPassword1"
+        android:layout_width="24dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_view_password"
+        android:layout_toRightOf="@id/rec_senha_edt1"
+        android:baselineAlignBottom="true"
+        android:layout_alignBaseline="@id/rec_senha_edt1"
+        android:layout_margin="10dp"
+        android:tint="@color/colorAccent"
+        />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_margin="5dp"
+        android:id="@+id/rec_senha_edt2"
+        android:hint="Digite a senha..."
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rec_senha_edt1"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/rec_senha_imgViewPassword2"
+        android:layout_width="24dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_view_password"
+        android:layout_toRightOf="@id/rec_senha_edt2"
+        android:baselineAlignBottom="true"
+        android:layout_alignBaseline="@id/rec_senha_edt2"
+        android:layout_margin="10dp"
+        android:tint="@color/colorAccent"
+        />
+    
+    <Button
+        android:id="@+id/cad_usuar_btnCadastrar"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:layout_below="@id/rec_senha_edt2"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:layout_margin="10dp"
+        />
+
+</RelativeLayout>

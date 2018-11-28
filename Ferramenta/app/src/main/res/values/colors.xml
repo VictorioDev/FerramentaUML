@@ -5,5 +5,6 @@
     <color name="colorAccent">#dbdbdb</color>
     <color name="background">#fff</color>
     <color name="tint_yellow">#ffea01</color>
+    <color name="red"></color>
 
 </resources>

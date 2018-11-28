@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aula.victoriozansavio.umlp5.activity.HomePageActivity">
+
+    <TextView
+    android:id="@+id/home_page_tvOla"
+    android:textSize="18dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginLeft="16dp"
+    android:text="Olá, "
+    android:layout_alignParentLeft="true"
+    android:textColor="#7f7f7f"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/home_page_tvNome"
+        android:textSize="20dp"
+        android:text="Luciano de Carvalho"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/home_page_tvOla"
+        android:layout_alignBaseline="@id/home_page_tvOla"/>
+
+    <TextView
+        android:id="@+id/home_page_tvEmail"
+        android:textSize="12dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="16dp"
+        android:text="luciano.carvalho01@fatec.sp.gov.br"
+        android:textColor="#7f7f7f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_page_tvOla"/>
+
+    <ImageView
+        android:id="@+id/home_page_ivSair"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_logout"
+        android:tint="#7f7f7f"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@id/home_page_tvSair"
+        />
+
+    <TextView
+        android:id="@+id/home_page_tvSair"
+        android:textSize="18dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"
+        android:text="SAIR"
+        android:layout_alignParentRihgt="true"
+        android:layout_marginRight="10dp"
+        android:textColor="#7f7f7f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        />
+    
+    
+    <LinearLayout
+        android:id="@+id/home_page_llSubm"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/home_page_tvEmail"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="16dp"
+        android:gravity="bottom"
+        >
+        <TextView
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suas Submissões"
+            />
+
+        <TextView
+            android:textSize="11dp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verifique suas tentativas de resoluções."
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/home_page_llExerc"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/home_page_llSubm"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="16dp"
+        android:gravity="bottom"
+        >
+        <TextView
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Realizar um Exercício"
+            />
+
+        <TextView
+            android:textSize="11dp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tente resolver um novo exercício."
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

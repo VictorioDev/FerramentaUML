@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:text="Correção"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="#7c7c7c"/>
+
+    <TextView
+        android:text="Não encontramos o método save() na versão do professor."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/holo_red_dark"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"/>
+
+    <TextView
+        android:text="Faltou o método salvar()"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/holo_red_dark"/>
+
+    <Button
+        android:textColor="@android:color/white"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Fechar"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        />
+</LinearLayout>
