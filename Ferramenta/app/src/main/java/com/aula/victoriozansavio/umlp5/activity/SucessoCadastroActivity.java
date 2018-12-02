@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.aula.victoriozansavio.umlp5.R;
 
-public class HomePageActivity extends AppCompatActivity {
+public class SucessoCadastroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_sucesso_cadastro);
     }
 }

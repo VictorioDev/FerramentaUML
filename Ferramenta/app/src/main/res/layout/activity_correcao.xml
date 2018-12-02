@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center_vertical"
+            >
+
+            <ImageView
+                android:tint="@android:color/white"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/iv_main_voltar"
+                android:src="@drawable/ic_back"
+                android:layout_marginRight="5dp"
+                />
+            <TextView
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                android:textSize="@dimen/menu_font_size"
+                android:gravity="center_vertical"
+                />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:weightSum="12"
+        >
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager"
+            android:layout_weight="9"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" >
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/drawable_tabs"
+                android:layout_gravity="top" />
+
+        </android.support.v4.view.ViewPager>
+        <!--FrameLayout
+            android:layout_weight="9"
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/-->
+        <LinearLayout
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal | center_vertical"
+            android:padding="6dp"
+            >
+             <TextView
+            android:textAlignment="center"
+            android:text="O seu diagrama está correto!
+Verifique na aba de correção o diagrama feito pelo professor."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="VOLTAR PARA OS EXERCÍCIOS"
+                android:layout_width="match_parent"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

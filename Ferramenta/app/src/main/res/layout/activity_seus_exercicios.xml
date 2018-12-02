@@ -3,30 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:padding="20dp"
+    android:padding="16dp"
     android:orientation="vertical"
-    tools:context="com.aula.victoriozansavio.umlp5.activity.RecuperarSenhaActivity">
+    tools:context="com.aula.victoriozansavio.umlp5.activity.SeusExerciciosActivity">
+    <TextView
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seus Exercícios"
+        />
 
     <TextView
-        android:textColor="@color/colorPrimary"
-        android:text="Recupere sua senha!"
-        android:textSize="25dp"
+        android:text="1 exercício(s)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:layout_marginTop="10dp"
-        android:hint="Digite o seu email..."
+        android:hint="Busque um exercício específico..."
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:textColor="@android:color/white"
-        android:background="@color/colorPrimary"
+    <android.support.v7.widget.RecyclerView
         android:layout_marginTop="10dp"
-        android:text="Recuperar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

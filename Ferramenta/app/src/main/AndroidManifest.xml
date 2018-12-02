@@ -13,18 +13,28 @@
         <activity
             android:name=".activity.CasoDeUsoActivity"
             android:label="Ferramenta UML"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".activity.AlterarSenhaActivity" />
+        <activity android:name=".activity.CadastroActivity" />
+        <activity android:name=".activity.ClasseActivity" />
+        <activity android:name=".activity.ExercicioActivity" />
+        <activity android:name=".activity.HomePageAlunoActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.RecuperarSenhaActivity" />
+        <activity android:name=".activity.SubmissoesActivity" />
+        <activity android:name=".activity.SucessoCadastroActivity" />
+        <activity android:name=".activity.SeusExerciciosActivity" />
+        <activity android:name=".activity.BuscaProfessorActivity" />
+        <activity android:name=".activity.HomePageProfessorActivity" />
+        <activity android:name=".activity.CorrecaoActivity">
+
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".activity.RecuperarSenhaActivity" />
-        <activity android:name=".activity.CadastroActivity" />
-        <activity android:name=".activity.ClasseActivity" />
-        <activity android:name=".activity.ExercicioActivity" />
-        <activity android:name=".activity.HomePageActivity"></activity>
     </application>
 
 </manifest>

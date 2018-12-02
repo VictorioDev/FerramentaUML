@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal |center_vertical"
+    tools:context="com.aula.victoriozansavio.umlp5.activity.SucessoCadastroActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="124dp"
+        android:src="@drawable/ic_success"
+        />
+
+    <TextView
+        android:textColor="@color/colorPrimary"
+        android:text="Sucesso!"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:text="Por favor, verifique a caixa de entrada do email cadastrado. Caso não encontre, verifique sua caixa de spam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:textColor="#676767"
+        android:text="Ir para o login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

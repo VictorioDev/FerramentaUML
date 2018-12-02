@@ -22,6 +22,7 @@ import com.aula.victoriozansavio.umlp5.library.Option;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import processing.core.PApplet;
 
@@ -75,8 +76,21 @@ public class Sketch extends PApplet {
         //extend.setPositions(actor.getX(), actor.getY(), actor2.getX(), actor2.getY());
         this.include = new Include(0,0,0, this);
         this.include.setPositions(actor.getX(), actor.getY(), actor2.getX(), actor2.getY());*/
+        this.useCaseList = mockData();
 
     }
+
+    private ArrayList<UseCase> mockData(){
+        ArrayList<UseCase> useCases = new ArrayList<>();
+        Random r = new Random();
+        String name1 = r.nextInt(100) + "";
+        useCases.add(new UseCase(1, 300,300, name1,this ));
+
+        String name2 = r.nextInt(100) + "";
+        useCases.add(new UseCase(1, 100,200, name2,this ));
+        return  useCases;
+    }
+
 
 
     public void modifyActions(String key) {

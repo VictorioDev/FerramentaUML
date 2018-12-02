@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aula.victoriozansavio.umlp5.activity.CadastroActivity"
+    android:gravity="center_vertical"
+    >
+
+
+    <TextView
+        android:id="@+id/login_tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Login:"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/login_tvEmail"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cad_usuar_edtPassword"
+        android:layout_alignStart="@+id/cad_usuar_edtPassword"
+        android:layout_below="@+id/login_tvLogin"
+        android:hint="Digite aqui o seu email..." />
+
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_margin="5dp"
+        android:id="@+id/cad_usuar_edtPassword"
+        android:hint="Digite a senha..."
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_tvEmail"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/rec_senha_imgViewPassword1"
+        android:layout_width="24dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_view_password"
+        android:layout_toRightOf="@id/cad_usuar_edtPassword"
+        android:baselineAlignBottom="true"
+        android:layout_alignBaseline="@id/cad_usuar_edtPassword"
+        android:layout_margin="10dp"
+        android:tint="@color/colorAccent"
+        />
+
+
+    <Button
+        android:id="@+id/login_btnLogin"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:layout_below="@id/cad_usuar_edtPassword"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:id="@+id/login_tvSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Esqueceu sua senha?:"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/login_btnLogin"/>
+
+    <View
+        android:id="@+id/login_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/login_tvSenha"/>
+
+    <TextView
+        android:text="É estudante e não tem uma conta?"
+        android:id="@+id/login_tvEstudante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAlignBottom="true"
+        android:layout_below="@id/login_divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/login_btnCadastrar"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:layout_below="@id/login_tvEstudante"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        />
+
+
+</RelativeLayout>
