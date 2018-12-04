@@ -2,7 +2,6 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="13">
         <RelativeLayout
@@ -38,7 +37,7 @@
 
             <ImageView
                 android:padding="7dp"
-                android:id="@+id/ic_main_save"
+                android:id="@+id/activity_case_ivSave"
                 android:layout_width="45dp"
                 android:layout_height="35dp"
                 android:src="@drawable/ic_save"
@@ -63,33 +62,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/black"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="#f3f3f3"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/menu_font_size"
-            android:text="#11 - Login"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Ler o texto"
-            android:background="#FFF"
-            android:padding="10dp"
-            android:layout_centerVertical="true"
-            android:textSize="@dimen/menu_font_size"
-            />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,7 +72,33 @@
             android:id="@+id/container"
             android:layout_weight="9"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f3f3f3"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="#11 - Login"
+                    android:textSize="@dimen/menu_font_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="#FFF"
+                    android:padding="10dp"
+                    android:text="Ler o texto"
+                    android:textSize="@dimen/menu_font_size" />
+            </RelativeLayout>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_weight="1"

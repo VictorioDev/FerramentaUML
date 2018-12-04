@@ -6,13 +6,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.Sketch;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
 import processing.android.PFragment;
@@ -25,6 +30,7 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
     ImageView ivInclude;
     ImageView ivExtend;
     ImageView ivAnotation;
+    ImageView ivSave;
     ArrayList<ImageView> toolsIcons = new ArrayList<>();
 
     String text = "";
@@ -53,12 +59,14 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         ivInclude = (ImageView) findViewById(R.id.ivInclude );
         ivExtend = (ImageView) findViewById(R.id.ivExtend );
         ivAnotation = (ImageView) findViewById(R.id.ivAnotation );
+        ivSave = (ImageView) findViewById(R.id.activity_case_ivSave);
         ivUseCase.setOnClickListener(this);
         ivPointer.setOnClickListener(this);
         ivActor.setOnClickListener(this);
         ivInclude.setOnClickListener(this);
         ivExtend.setOnClickListener(this);
         ivAnotation.setOnClickListener(this);
+        ivSave.setOnClickListener(this);
 
         toolsIcons.add(ivUseCase);
         toolsIcons.add(ivPointer);
@@ -98,6 +106,10 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
             sketch.modifyActions("anotation");
             sketch.clearTemp();
             changeTint(ivAnotation);
+        } else if(view.getId() == ivSave.getId()){
+            String json = sketch.saveToJson();
+            Toast.makeText(this, "Salvando...", Toast.LENGTH_SHORT).show();
+            Log.i("App", json);
         }
 
         sketch.wichIsTrue(getBaseContext());
@@ -114,4 +126,6 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
 
         }
     }
+
+
 }

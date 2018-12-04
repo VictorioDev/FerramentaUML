@@ -18,8 +18,13 @@ import com.aula.victoriozansavio.umlp5.component.Extend;
 import com.aula.victoriozansavio.umlp5.component.Generalization;
 import com.aula.victoriozansavio.umlp5.component.Include;
 import com.aula.victoriozansavio.umlp5.component.UseCase;
+import com.aula.victoriozansavio.umlp5.library.JsonStructure;
 import com.aula.victoriozansavio.umlp5.library.Option;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,6 +44,8 @@ public class Sketch extends PApplet {
     private Context sketchContext;
     private ArrayList<Option> options = buildOptions();
     private int idDiagrama = 0;
+
+
     private List<UseCase> useCaseList = new ArrayList<>();
     private List<Association> associationList = new ArrayList<>();
     private List<Generalization> generalizationList = new ArrayList<>();
@@ -76,7 +83,7 @@ public class Sketch extends PApplet {
         //extend.setPositions(actor.getX(), actor.getY(), actor2.getX(), actor2.getY());
         this.include = new Include(0,0,0, this);
         this.include.setPositions(actor.getX(), actor.getY(), actor2.getX(), actor2.getY());*/
-        this.useCaseList = mockData();
+        //this.useCaseList = mockData();
 
     }
 
@@ -91,6 +98,16 @@ public class Sketch extends PApplet {
         return  useCases;
     }
 
+
+    public String saveToJson(){
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithModifiers(Modifier.TRANSIENT)
+                .create();
+
+        JsonStructure jsonStructure = new JsonStructure();
+        jsonStructure.setUseCaseList(useCaseList);
+        return gson.toJson(jsonStructure);
+    }
 
 
     public void modifyActions(String key) {

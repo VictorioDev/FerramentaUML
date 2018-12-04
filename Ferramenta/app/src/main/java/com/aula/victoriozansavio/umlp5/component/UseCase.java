@@ -2,6 +2,8 @@ package com.aula.victoriozansavio.umlp5.component;
 
 import android.graphics.Color;
 
+import com.google.gson.annotations.SerializedName;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -13,21 +15,23 @@ import static java.lang.Math.pow;
 
 public class UseCase {
 
-    private int id;
+    private int  id;
     private int x;
     private int y;
     private String name;
-    private int offset_x;
-    private int offset_y;
-    private boolean hover;
-    private  boolean locked;
-    private int textSize;
-    private int stroke;
-    private String backgroundColor;
-    private String color;
-    private int width;
-    private int height;
-    private PApplet drawContainer;
+
+
+    private transient int offset_x;
+    private transient int offset_y;
+    private transient boolean hover;
+    private transient boolean locked;
+    private transient int textSize;
+    private transient int stroke;
+    private transient String backgroundColor;
+    private transient String color;
+    private transient int width;
+    private transient int height;
+    private transient PApplet drawContainer;
 
 
     public UseCase(int id, int x, int y, String name, PApplet drawContainer){
