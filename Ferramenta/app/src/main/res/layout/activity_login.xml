@@ -20,44 +20,43 @@
         android:textColor="@color/colorPrimary"/>
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/login_tvEmail"
+        android:id="@+id/activity_login_edtEmail"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cad_usuar_edtPassword"
-        android:layout_alignStart="@+id/cad_usuar_edtPassword"
+        android:layout_alignLeft="@+id/activity_login_edtPassword"
+        android:layout_alignStart="@+id/activity_login_edtPassword"
         android:layout_below="@+id/login_tvLogin"
         android:hint="Digite aqui o seu email..." />
 
 
     <android.support.v7.widget.AppCompatEditText
-        android:layout_margin="5dp"
-        android:id="@+id/cad_usuar_edtPassword"
-        android:hint="Digite a senha..."
+        android:id="@+id/activity_login_edtPassword"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_tvEmail"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_alignLeft="@+id/activity_login_btnLogin"
+        android:layout_alignStart="@+id/activity_login_btnLogin"
+        android:layout_below="@+id/activity_login_edtEmail"
+        android:hint="Digite a senha..." />
 
     <ImageView
-        android:id="@+id/rec_senha_imgViewPassword1"
-        android:layout_width="24dp"
+        android:id="@+id/activity_login_imgViewPassword"
+        android:layout_width="484dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_view_password"
-        android:layout_toRightOf="@id/cad_usuar_edtPassword"
+        android:layout_toRightOf="@id/activity_login_edtPassword"
         android:baselineAlignBottom="true"
-        android:layout_alignBaseline="@id/cad_usuar_edtPassword"
+        android:layout_alignBaseline="@id/activity_login_edtPassword"
         android:layout_margin="10dp"
         android:tint="@color/colorAccent"
         />
 
 
     <Button
-        android:id="@+id/login_btnLogin"
+        android:id="@+id/activity_login_btnLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Cadastrar"
-        android:layout_below="@id/cad_usuar_edtPassword"
+        android:text="Login"
+        android:layout_below="@id/activity_login_edtPassword"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
@@ -65,7 +64,7 @@
         />
 
     <TextView
-        android:id="@+id/login_tvSenha"
+        android:id="@+id/activity_login_tvSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -73,7 +72,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:textColor="@color/colorPrimary"
-        android:layout_below="@id/login_btnLogin"/>
+        android:layout_below="@id/activity_login_btnLogin"/>
 
     <View
         android:id="@+id/login_divider"
@@ -82,11 +81,11 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:textColor="@color/colorPrimary"
-        android:layout_below="@id/login_tvSenha"/>
+        android:layout_below="@id/activity_login_tvSenha"/>
 
     <TextView
         android:text="É estudante e não tem uma conta?"
-        android:id="@+id/login_tvEstudante"
+        android:id="@+id/activity_login_tvEstudante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:baselineAlignBottom="true"
@@ -96,11 +95,11 @@
         />
 
     <Button
-        android:id="@+id/login_btnCadastrar"
+        android:id="@+id/activity_login_btnCadastrar"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
-        android:layout_below="@id/login_tvEstudante"
+        android:layout_below="@id/activity_login_tvEstudante"
         android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"

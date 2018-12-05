@@ -115,7 +115,8 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         sketch.wichIsTrue(getBaseContext());
     }
 
-    private void changeTint(ImageView view) {
+
+    private  void changeTint(ImageView view) {
         view.setColorFilter(ContextCompat.getColor(getBaseContext(),
                 R.color.tint_yellow));
         ImageViewCompat.setImageTintList(view, ColorStateList.valueOf(getResources().getColor(R.color.tint_yellow)));

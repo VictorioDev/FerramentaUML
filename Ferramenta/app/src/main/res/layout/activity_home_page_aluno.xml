@@ -7,7 +7,7 @@
     tools:context="com.aula.victoriozansavio.umlp5.activity.HomePageAlunoActivity">
 
     <TextView
-    android:id="@+id/home_page_tvOla"
+    android:id="@+id/activity_hp_alu_tvOla"
     android:textSize="18dp"
     android:layout_marginTop="30dp"
     android:layout_marginLeft="16dp"
@@ -19,17 +19,17 @@
 
 
     <TextView
-        android:id="@+id/home_page_tvNome"
-        android:textSize="20dp"
+        android:id="@+id/activity_hp_alu_tvNome"
+        android:textSize="18dp"
         android:text="Luciano de Carvalho"
         android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/home_page_tvOla"
-        android:layout_alignBaseline="@id/home_page_tvOla"/>
+        android:layout_toRightOf="@id/activity_hp_alu_tvOla"
+        android:layout_alignBaseline="@id/activity_hp_alu_tvOla"/>
 
     <TextView
-        android:id="@+id/home_page_tvEmail"
+        android:id="@+id/activity_hp_alu_tvEmail"
         android:textSize="12dp"
         android:layout_marginTop="3dp"
         android:layout_marginLeft="16dp"
@@ -37,23 +37,23 @@
         android:textColor="#7f7f7f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_page_tvOla"/>
+        android:layout_below="@id/activity_hp_alu_tvOla"/>
 
     <ImageView
-        android:id="@+id/home_page_ivSair"
+        android:id="@+id/activity_hp_alu_ivSair"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_logout"
         android:tint="#7f7f7f"
         android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@id/home_page_tvSair"
+        android:layout_toLeftOf="@id/activity_hp_alu_tvSair"
         />
 
     <TextView
-        android:id="@+id/home_page_tvSair"
+        android:id="@+id/activity_hp_alu_tvSair"
         android:textSize="18dp"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="5dp"
         android:text="SAIR"
         android:layout_marginRight="10dp"
         android:textColor="#7f7f7f"
@@ -64,12 +64,12 @@
     
     
     <LinearLayout
-        android:id="@+id/home_page_llSubm"
+        android:id="@+id/activity_hp_alu_llSubm"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@id/home_page_tvEmail"
+        android:layout_below="@id/activity_hp_alu_tvEmail"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -96,12 +96,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/home_page_llExerc"
+        android:id="@+id/activity_hp_alu_llExerc"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@id/home_page_llSubm"
+        android:layout_below="@id/activity_hp_alu_llSubm"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"

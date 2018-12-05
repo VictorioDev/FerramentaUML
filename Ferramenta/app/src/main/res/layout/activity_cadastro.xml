@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.aula.victoriozansavio.umlp5.activity.CadastroActivity"
     android:gravity="center_vertical"
-    android:padding="16dp">
+    android:padding="10dp">
 
 
     <TextView
@@ -20,53 +20,54 @@
         android:textColor="@color/colorPrimary"/>
 
     <android.support.v7.widget.AppCompatEditText
-        android:layout_margin="5dp"
-        android:id="@+id/cad_usuar_edtNome"
-        android:hint="Digite o seu nome..."
+        android:id="@+id/activity_cad_usuar_edtNome"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_cad_usuar_edtEmail"
+        android:layout_alignStart="@+id/activity_cad_usuar_edtEmail"
         android:layout_below="@+id/cad_usuar_tvCadastrese"
-        android:layout_centerHorizontal="true"
-        />
+        android:hint="Digite o seu nome..." />
 
     <android.support.v7.widget.AppCompatEditText
         android:layout_margin="5dp"
-        android:id="@+id/cad_usuar_edtEmail"
+        android:id="@+id/activity_cad_usuar_edtEmail"
         android:hint="Digite o seu email..."
+        android:inputType="textEmailAddress"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cad_usuar_edtNome"
+        android:layout_below="@+id/activity_cad_usuar_edtNome"
         android:layout_centerHorizontal="true"
         />
 
     <android.support.v7.widget.AppCompatEditText
         android:layout_margin="5dp"
-        android:id="@+id/cad_usuar_edtPassword"
+        android:inputType="textPassword | text"
+        android:id="@+id/activity_cad_usuar_edtPassword"
         android:hint="Digite a senha..."
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cad_usuar_edtEmail"
+        android:layout_below="@+id/activity_cad_usuar_edtEmail"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
-        android:id="@+id/rec_senha_imgViewPassword1"
-        android:layout_width="24dp"
+        android:id="@+id/activity_cad_usuar_ivPassword"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_view_password"
-        android:layout_toRightOf="@id/cad_usuar_edtPassword"
+        android:layout_toRightOf="@id/activity_cad_usuar_edtPassword"
         android:baselineAlignBottom="true"
-        android:layout_alignBaseline="@id/cad_usuar_edtPassword"
-        android:layout_margin="10dp"
+        android:layout_alignBaseline="@id/activity_cad_usuar_edtPassword"
         android:tint="@color/colorAccent"
         />
 
 
     <Button
+        android:id="@+id/activity_cad_usuar_btnCadastrar"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
-        android:layout_below="@id/cad_usuar_edtPassword"
+        android:layout_below="@id/activity_cad_usuar_edtPassword"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
