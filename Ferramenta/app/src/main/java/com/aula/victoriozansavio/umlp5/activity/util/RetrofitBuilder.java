@@ -11,7 +11,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitBuilder {
 
     public static Retrofit build(Converter.Factory converter){
-        String BASE_URL = "http://192.168.0.100:3000/api/";
+        String BASE_URL = "http://192.168.0.108:3000/api/";
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(converter)

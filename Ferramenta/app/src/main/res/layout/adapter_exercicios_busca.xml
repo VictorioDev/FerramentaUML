@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+
     >
 
     <TextView
-        android:id="@+id/adapter_exercicios_tvExercicio"
+        android:id="@+id/adapter_exerciciosR_tvExercicio"
         android:text="#1 - Problema do Banco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,31 +16,32 @@
     <TextView
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:id="@+id/adapter_exercicios_tvTipoDiagrama"
+        android:id="@+id/adapter_exerciciosR_tvTipoDiagrama"
         android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Diagrama de Caso de Uso"
-        android:layout_below="@id/adapter_exercicios_tvExercicio"
+        android:layout_below="@id/adapter_exerciciosR_tvExercicio"
         />
 
     <TextView
         android:text="Descrição: Lorem ipsum dolor sit amet, consecter hwodh ao d h w  oahd oawh "
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/adapter_exercicios_tvTipoDiagrama"
-        android:id="@+id/textView" />
+        android:layout_below="@id/adapter_exerciciosR_tvTipoDiagrama"
+        android:id="@+id/adapter_exerciciosR_tvDesc" />
 
     <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@id/adapter_exerciciosR_tvDesc"
+        android:layout_toRightOf="@id/adapter_exerciciosR_tvDesc"
+        android:layout_marginLeft="30dp"
         android:background="@color/colorPrimary"
+        android:baseline="20dp"
         android:padding="10dp"
+        android:rotation="90"
         android:src="@drawable/ic_up_arrow"
-        android:tint="@android:color/white"
-        android:rotation="90"/>
+        android:tint="@android:color/white" />
 
 </RelativeLayout>

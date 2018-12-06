@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.aula.victoriozansavio.umlp5.API.UserServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
+import com.aula.victoriozansavio.umlp5.activity.util.Utils;
 import com.aula.victoriozansavio.umlp5.library.LoginResult;
 import com.aula.victoriozansavio.umlp5.library.User;
 import com.google.gson.Gson;
@@ -83,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(getBaseContext(), RecuperarSenhaActivity.class);
                 startActivity(i);
-                finish();
             }
         });
 
@@ -117,6 +117,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    private void openHomePage(User user){
+        Intent i = new Intent(getBaseContext(), HomePageAlunoActivity.class);
+        i.putExtra("user", user);
+        startActivity(i);
+    }
+
     private void getUserInfo(String id, String token){
         ProgressDialog progressDialog = new ProgressDialog(getBaseContext());
         progressDialog.setTitle("Busca informações...");
@@ -133,9 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         JSONObject userJson = new JSONObject(response.body());
                         User user = new Gson().fromJson(userJson.get("user").toString(), User.class);
-                        Intent i = new Intent(getBaseContext(), HomePageAlunoActivity.class);
-                        i.putExtra("user", user);
-                        startActivity(i);
+                        openHomePage(user);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -173,7 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     String token = response.body().getToken();
                     String id = response.body().getId();
-                    saveToken(token);
+                    Utils.saveToken(token, getBaseContext());
                     Log.i("App", token);
                     Toast.makeText(getBaseContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
                     getUserInfo(id, token);
@@ -196,12 +200,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void saveToken(String token){
-        SharedPreferences sharedPreferences = getSharedPreferences("chave", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("token", token);
-        editor.commit();
-    }
+
 
     private User buildObject() {
         User user = new User();

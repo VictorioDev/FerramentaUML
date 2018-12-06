@@ -4,7 +4,7 @@
     package="com.aula.victoriozansavio.umlp5"
     android:versionCode="2">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,74 +14,77 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.CasoDeUsoActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"/>
-
-        <activity android:name=".activity.AlterarSenhaActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.CadastroActivity"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden">
-
-
-        </activity>
-        <activity android:name=".activity.ClasseActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.ExercicioActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.HomePageAlunoActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:label="FaeduL"
+            android:name=".activity.AlterarSenhaActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CadastroActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.ClasseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ExercicioActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HomePageAlunoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden">
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Faedu"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecuperarSenhaActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".activity.RecuperarSenhaActivity"
             android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.SubmissoesActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SubmissoesActivity"
             android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.SucessoCadastroActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"/>
-        <activity android:name=".activity.SeusExerciciosActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SucessoCadastroActivity"
             android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.BuscaProfessorActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SeusExerciciosActivity"
             android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.HomePageProfessorActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BuscaProfessorActivity"
             android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.CorrecaoActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".activity.HomePageProfessorActivity"
             android:configChanges="orientation|keyboardHidden"
-            />
-        <activity android:name=".activity.BuscaExercicioActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CorrecaoActivity"
             android:configChanges="orientation|keyboardHidden"
-            />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BuscaExercicioActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".activity.util.CadastroExercicioActivity"></activity>
     </application>
 
 </manifest>

@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+   >
 
 
     <View
         android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
-
-
 
     <TextView
         android:textColor="@android:color/black"
@@ -43,7 +41,7 @@
 
     <TextView
         android:text="10 Exercícios"
-        android:id="@+id/adapter_submissoes_tvTentativa"
+        android:id="@+id/adapter_professores_tvNumExs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/adapter_professores_tvInstituição"/>

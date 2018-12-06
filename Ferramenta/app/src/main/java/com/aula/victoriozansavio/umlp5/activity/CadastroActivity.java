@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -41,10 +42,12 @@ public class CadastroActivity extends AppCompatActivity {
     Button btnCadastrar;
     ImageView ivSenha;
 
+    CheckBox checkProfessor;
 
     String nome;
     String email;
     String senha;
+    boolean profesor;
 
     boolean passwordView = false;
 
@@ -58,8 +61,8 @@ public class CadastroActivity extends AppCompatActivity {
 
     private void register(User user){
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        //progressDialog.setTitle("Cadastrando, por favor aguarde...");
-        //progressDialog.show();
+        progressDialog.setTitle("Cadastrando, por favor aguarde...");
+        progressDialog.show();
        /* Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.100:3000/api/")
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -183,6 +186,7 @@ public class CadastroActivity extends AppCompatActivity {
         edtSenha = (EditText) findViewById(R.id.activity_cad_usuar_edtPassword);
         btnCadastrar = (Button) findViewById(R.id.activity_cad_usuar_btnCadastrar);
         ivSenha = (ImageView)  findViewById(R.id.activity_cad_usuar_ivPassword);
+        checkProfessor = (CheckBox) findViewById(R.id.activity_login_checkProf);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -209,6 +213,7 @@ public class CadastroActivity extends AppCompatActivity {
          nome = edtNome.getText().toString();
          email = edtEmail.getText().toString();
          senha = edtSenha.getText().toString();
+         profesor = checkProfessor.isChecked();
         if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()){
             Toast.makeText(this, "Existem caapos não preenchidos!", Toast.LENGTH_SHORT).show();
             return false;
@@ -221,7 +226,13 @@ public class CadastroActivity extends AppCompatActivity {
         user.setNome(nome);
         user.setEmail(email);
         user.setPassword(senha);
-        user.setLevel(2);
+
+        if(profesor){
+            user.setLevel(2);
+        }else {
+            user.setLevel(3);
+        }
+
         return user;
     }
 

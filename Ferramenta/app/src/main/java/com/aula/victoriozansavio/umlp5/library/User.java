@@ -11,6 +11,11 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 
+
+    @Expose
+    @SerializedName("organization")
+    private String organization;
+
     @Expose
     @SerializedName("name")
     private String nome;
@@ -31,6 +36,14 @@ public class User implements Serializable{
     @Expose
     private int level;
 
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
 
     public String getNome() {
         return nome;

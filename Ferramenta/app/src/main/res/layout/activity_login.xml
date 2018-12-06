@@ -38,6 +38,16 @@
         android:layout_below="@+id/activity_login_edtEmail"
         android:hint="Digite a senha..." />
 
+    <CheckBox
+        android:id="@+id/activity_login_checkProf"
+        android:text="É professor?"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/activity_login_edtPassword"
+        android:layout_below="@id/activity_login_edtPassword"/>
+
     <ImageView
         android:id="@+id/activity_login_imgViewPassword"
         android:layout_width="484dp"
@@ -56,7 +66,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:layout_below="@id/activity_login_edtPassword"
+        android:layout_below="@id/activity_login_checkProf"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
