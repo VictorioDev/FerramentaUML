@@ -1,7 +1,10 @@
 package com.aula.victoriozansavio.umlp5.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.aula.victoriozansavio.umlp5.R;
@@ -14,6 +17,7 @@ public class ExercicioActivity extends AppCompatActivity {
     TextView tvAuthor;
     TextView tvInst;
     TextView tvDesc;
+    Button btnResolver;
 
     Exercise exercise = new Exercise();
 
@@ -38,6 +42,7 @@ public class ExercicioActivity extends AppCompatActivity {
         tvAuthor = findViewById(R.id.activity_exercicio_visu_tvAuthor);
         tvInst = findViewById(R.id.activity_exercicio_visu_tvInst);
         tvDesc = findViewById(R.id.activity_exercicio_visu_tvDesc);
+        btnResolver = findViewById(R.id.activity_exercicio_visu_btnResolver);
 
         tvTitle.setText(exercise.getTitle());
         if(exercise.getType() == 1){
@@ -45,8 +50,22 @@ public class ExercicioActivity extends AppCompatActivity {
         }else {
             tvTipoDiag.setText("Diagrama de Classe");
         }
-        tvAuthor.setText(exercise.getAuthor().getNome());
-        tvInst.setText(exercise.getAuthor().getOrganization());
+        tvAuthor.setText("Autor: " + exercise.getAuthor().getNome());
+        tvInst.setText("Instituição: " + exercise.getAuthor().getOrganization());
         tvDesc.setText(exercise.getDescription());
+
+        btnResolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i;
+                if(exercise.getType() == 1){
+                    i = new Intent(getBaseContext(), CasoDeUsoActivity.class);
+                }else {
+                    i = new Intent(getBaseContext(), ClasseActivity.class);
+                }
+                i.putExtra("exercise", exercise);
+                startActivity(i);
+            }
+        });
     }
 }

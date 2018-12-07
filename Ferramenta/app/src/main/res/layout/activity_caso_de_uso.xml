@@ -68,11 +68,6 @@
         android:layout_height="match_parent"
         android:weightSum="10"
         android:orientation="vertical">
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_weight="9"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -81,6 +76,7 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/activity_use_case_tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -98,8 +94,12 @@
                     android:text="Ler o texto"
                     android:textSize="@dimen/menu_font_size" />
             </RelativeLayout>
-        </FrameLayout>
 
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_weight="9"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"

@@ -26,6 +26,9 @@ import com.aula.victoriozansavio.umlp5.library.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,17 +63,27 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initViews();
+        String id = Utils.getId(getBaseContext());
+        String token = Utils.getToken(getBaseContext());
+        if(Utils.verifyUserTokenValidation(id, token, getBaseContext())){
+            getUserInfo(id, token);
+        }else{
+            setContentView(R.layout.activity_login);
+            initViews();
 
-        Bundle bundle = getIntent().getExtras();
-        if( bundle != null){
-            edtEmail.setText(bundle.getString("email"));
-            edtSenha.requestFocus();
+            Bundle bundle = getIntent().getExtras();
+            if( bundle != null){
+                edtEmail.setText(bundle.getString("email"));
+                edtSenha.requestFocus();
+            }
         }
 
 
+
     }
+
+
+
 
     private void initViews() {
         edtEmail = (EditText) findViewById(R.id.activity_login_edtEmail);
@@ -140,6 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject userJson = new JSONObject(response.body());
                         User user = new Gson().fromJson(userJson.get("user").toString(), User.class);
                         openHomePage(user);
+                        finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -175,12 +189,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 if(response.isSuccessful()){
-                    String token = response.body().getToken();
-                    String id = response.body().getId();
-                    Utils.saveToken(token, getBaseContext());
-                    Log.i("App", token);
+                    LoginResult loginResult = response.body();
+                    Utils.saveToken(loginResult, getBaseContext());
+                    Log.i("App", loginResult.getToken());
                     Toast.makeText(getBaseContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                    getUserInfo(id, token);
+                    getUserInfo(loginResult.getId(), loginResult.getId());
                 }else {
                     try {
                         Log.i("App", response.errorBody().string());

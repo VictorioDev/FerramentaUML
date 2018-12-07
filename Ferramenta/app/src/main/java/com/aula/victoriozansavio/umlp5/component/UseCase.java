@@ -2,6 +2,7 @@ package com.aula.victoriozansavio.umlp5.component;
 
 import android.graphics.Color;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import processing.core.PApplet;

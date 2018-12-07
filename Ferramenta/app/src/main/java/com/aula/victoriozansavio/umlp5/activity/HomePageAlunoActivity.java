@@ -14,6 +14,7 @@ public class HomePageAlunoActivity extends AppCompatActivity {
     TextView tvNome;
     TextView tvEmail;
     View exerciciosContainer;
+    View submissionsContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,20 @@ public class HomePageAlunoActivity extends AppCompatActivity {
         tvEmail =  findViewById(R.id.activity_hp_alu_tvEmail);
         tvNome =  findViewById(R.id.activity_hp_alu_tvNome);
         exerciciosContainer = findViewById(R.id.activity_hp_alu_llExerc);
+        submissionsContainer = findViewById(R.id.activity_hp_alu_llSubm);
+
         exerciciosContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), BuscaProfessorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        submissionsContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), SubmissoesActivity.class);
                 startActivity(intent);
             }
         });

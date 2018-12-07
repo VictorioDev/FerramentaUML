@@ -1,27 +1,20 @@
 package com.aula.victoriozansavio.umlp5.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.aula.victoriozansavio.umlp5.R;
-import com.aula.victoriozansavio.umlp5.activity.ExercicioActivity;
-import com.aula.victoriozansavio.umlp5.library.Exercise;
-import com.aula.victoriozansavio.umlp5.library.User;
+import com.aula.victoriozansavio.umlp5.library.Submission;
+
 
 import java.util.List;
 
-public class BuscaExercicioAdapter extends RecyclerView.Adapter<BuscaExercicioAdapter.MyViewHolder> {
-
-    RecyclerView recyclerViewProfessores;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private List<Exercise> mDataset;
+public class SubmissoesAdapter extends RecyclerView.Adapter<SubmissoesAdapter.MyViewHolder> {
+    private List<Submission> mDataset;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -31,32 +24,32 @@ public class BuscaExercicioAdapter extends RecyclerView.Adapter<BuscaExercicioAd
         // each data item is just a string in this case
 
         View view;
-        TextView tvNome;
+        TextView tvTitle;
         TextView tvDiagrama;
-        TextView tvDescricao;
+        TextView tvData;
 
         public MyViewHolder(View v) {
             super(v);
             this.view = v;
-            tvNome = view.findViewById(R.id.adapter_exerciciosR_tvExercicio);
-            tvDiagrama =  view.findViewById(R.id.adapter_exerciciosR_tvTipoDiagrama);
-            tvDescricao =  view.findViewById(R.id.adapter_exerciciosR_tvDesc);
+            tvTitle = view.findViewById(R.id.adapter_submissoes_tvNomeExercicio);
+            tvDiagrama =  view.findViewById(R.id.adapter_submissoes_tvTipoDiagrama);
+            tvData =  view.findViewById(R.id.adapter_submissoes_tvTentativa);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public BuscaExercicioAdapter(List<Exercise> exercises, Context context) {
-        this.mDataset = exercises;
+    public SubmissoesAdapter(List<Submission> submissions, Context context) {
+        this.mDataset = submissions;
         this.context = context;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public BuscaExercicioAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+    public SubmissoesAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                                  int viewType) {
         // create a new view
         View v = LayoutInflater.from(context)
-                .inflate(R.layout.adapter_exercicios_busca, null, false);
+                .inflate(R.layout.adapter_sumissoes, null, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -67,21 +60,22 @@ public class BuscaExercicioAdapter extends RecyclerView.Adapter<BuscaExercicioAd
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Log.i("App", "Bind: " + position);
-        holder.tvNome.setText("#" + (position + 1) + " - " + mDataset.get(position).getTitle());
-        if(mDataset.get(position).getType() == 1){
+        holder.tvTitle.setText("#" + (position + 1) + " - " + mDataset.get(position).getExercise().getTitle());
+        if(mDataset.get(position).getExercise().getType() == 1){
             holder.tvDiagrama.setText("Diagrama de Caso de Uso");
         }else {
             holder.tvDiagrama.setText("Diagrama de Classe");
         }
 
-        holder.tvDescricao.setText(mDataset.get(position).getDescription());
+        String dataSub = mDataset.get(position).getDate().substring(0,10);
+        Log.i("App", dataSub);
+        String anoMesDia[] = dataSub.split("-");
+        holder.tvData.setText("Tentativa em: " + anoMesDia[2] + "/" + anoMesDia[1] + "/" + anoMesDia[0]);
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, ExercicioActivity.class);
-                i.putExtra("exercise", mDataset.get(position));
-                context.startActivity(i);
+
             }
         });
 

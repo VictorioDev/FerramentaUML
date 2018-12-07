@@ -36,7 +36,6 @@ public class BuscaProfessorActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private String token;
 
-
     private List<User> userList = new ArrayList<>();
 
     private String filter = "";
@@ -44,10 +43,16 @@ public class BuscaProfessorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        token = Utils.getToken(getBaseContext());
+        String id = Utils.getId(getBaseContext());
+        if(!Utils.verifyUserTokenValidation(id, token, getBaseContext())){
+            Utils.redirectToLoginPage(getBaseContext());
+        }
+
         setContentView(R.layout.activity_busca_professor);
         edtNomeProfessor = (EditText) findViewById(R.id.activity_busca_prof_edtNome);
 
-        token = Utils.getToken(getBaseContext());
+
 
         Log.i("App", "Token:" + token);
 

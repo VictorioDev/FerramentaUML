@@ -11,15 +11,30 @@ public class LoginResult {
     @SerializedName("auth")
     @Expose
     private Boolean auth;
+
     @SerializedName("token")
     @Expose
     private String token;
+
     @SerializedName("level")
     @Expose
     private Long level;
+
     @SerializedName("id")
     @Expose
     private String id;
+
+    @SerializedName("expiration")
+    @Expose
+    private String expiration;
+
+    public String getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(String expiration) {
+        this.expiration = expiration;
+    }
 
     public Boolean getAuth() {
         return auth;

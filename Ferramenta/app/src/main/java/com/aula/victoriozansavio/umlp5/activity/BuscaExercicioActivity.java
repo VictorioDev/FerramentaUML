@@ -49,10 +49,12 @@ public class BuscaExercicioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busca_exercicio);
-
+        String id = Utils.getId(getBaseContext());
         token = Utils.getToken(getBaseContext());
-
+        if(!Utils.verifyUserTokenValidation(id, token, getBaseContext())){
+            Utils.redirectToLoginPage(getBaseContext());
+        }
+        setContentView(R.layout.activity_busca_exercicio);
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
             this.professor = (User) bundle.getSerializable("professor");
