@@ -18,9 +18,11 @@ import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.Sketch;
 import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
 import com.aula.victoriozansavio.umlp5.library.Exercise;
 import com.aula.victoriozansavio.umlp5.library.Submission;
 import com.aula.victoriozansavio.umlp5.library.User;
+import com.aula.victoriozansavio.umlp5.model.UserModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -36,7 +38,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClickListener{
+public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClickListener, UserActionInterface{
 
     ImageView ivUseCase;
     ImageView ivPointer;
@@ -52,6 +54,7 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
 
     String token = "";
     String id = "";
+    String json = "";
 
     String text = "";
 
@@ -146,6 +149,7 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
                 Utils.redirectToLoginPage(getBaseContext());
             }else {
                 String json = sketch.saveToJson();
+                UserModel.getUserById(id, token, getBaseContext(), this);
                 Toast.makeText(this, "Salvando...", Toast.LENGTH_SHORT).show();
                 Log.i("App", json);
             }
@@ -157,9 +161,11 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
     }
 
 
-    private Submission buildObject(String id, String json){
+    private Submission buildObject(User user, String json){
         Submission submission =  new Submission();
         submission.setExercise(exercise);
+        Log.i("App", "BuildObject: " + user.getNome());
+        submission.setAuthor(user);
         submission.setJson(json);
         return submission;
     }
@@ -205,4 +211,8 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
     }
 
 
+    @Override
+    public void workWithUser(User user) {
+        saveSubmission(buildObject(user, json));
+    }
 }

@@ -17,5 +17,5 @@ public interface SubmissionServiceAPI {
     Call<List<Submission>> getSubmissionsByAuthor(@Header("x-access-tokne") String token, @Path("id") String id);
 
     @POST("submissions")
-    Call<Submission> saveSubmission(@Header("x-access-tokne") String token, @Body Submission submission);
+    Call<Submission> saveSubmission(@Header("x-access-token") String token, @Body Submission submission);
 }
