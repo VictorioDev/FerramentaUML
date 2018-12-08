@@ -31,7 +31,10 @@ public class Utils {
         editor.putString("token", loginResult.getToken());
         editor.putString("expiration", loginResult.getExpiration());
         editor.putString("id", loginResult.getId());
-        editor.commit();
+        if(!editor.commit()){
+            Toast.makeText(context, "Erro ao salvar Preferences!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public static String getToken(Context context){
@@ -69,6 +72,13 @@ public class Utils {
         Toast.makeText(context,"É necessário realizar Login!", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(context, LoginActivity.class);
         context.startActivity(i);
+    }
+
+    public static void logOut(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Faedu", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
     }
 
 }

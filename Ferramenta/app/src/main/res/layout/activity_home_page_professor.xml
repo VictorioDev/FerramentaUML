@@ -7,7 +7,7 @@
     tools:context="com.aula.victoriozansavio.umlp5.activity.HomePageAlunoActivity">
 
     <TextView
-    android:id="@+id/home_page_professor_tvOla"
+    android:id="@+id/activity_home_page_professor_tvOla"
     android:textSize="18dp"
     android:layout_marginTop="30dp"
     android:layout_marginLeft="16dp"
@@ -19,17 +19,17 @@
 
 
     <TextView
-        android:id="@+id/home_page_professor_tvNome"
-        android:textSize="20dp"
+        android:id="@+id/activity_home_page_professor_tvNome"
+        android:textSize="18dp"
         android:text="Paulo Souza Cardoso"
         android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/home_page_professor_tvOla"
-        android:layout_alignBaseline="@id/home_page_professor_tvOla"/>
+        android:layout_toRightOf="@id/activity_home_page_professor_tvOla"
+        android:layout_alignBaseline="@id/activity_home_page_professor_tvOla"/>
 
     <TextView
-        android:id="@+id/home_page_professor_tvEmail"
+        android:id="@+id/activity_home_page_professor_tvInst"
         android:textSize="12dp"
         android:layout_marginTop="3dp"
         android:layout_marginLeft="16dp"
@@ -37,23 +37,23 @@
         android:textColor="#7f7f7f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_page_professor_tvOla"/>
+        android:layout_below="@id/activity_home_page_professor_tvOla"/>
 
     <ImageView
-        android:id="@+id/home_page_professor_ivSair"
+        android:id="@+id/activity_home_page_professor_ivSair"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_logout"
         android:tint="#7f7f7f"
         android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@id/home_page_professor_tvSair"
+        android:layout_toLeftOf="@id/activity_home_page_professor_tvSair"
         />
 
     <TextView
-        android:id="@+id/home_page_professor_tvSair"
+        android:id="@+id/activity_home_page_professor_tvSair"
         android:textSize="18dp"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="5dp"
         android:text="SAIR"
         android:layout_marginRight="10dp"
         android:textColor="#7f7f7f"
@@ -64,12 +64,12 @@
     
     
     <LinearLayout
-        android:id="@+id/home_page_professor_llSubm"
+        android:id="@+id/activity_home_page_professor_llExer"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@id/home_page_professor_tvEmail"
+        android:layout_below="@id/activity_home_page_professor_tvInst"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"

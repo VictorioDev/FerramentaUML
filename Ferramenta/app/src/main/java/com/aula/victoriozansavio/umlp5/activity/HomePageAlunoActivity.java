@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aula.victoriozansavio.umlp5.R;
+import com.aula.victoriozansavio.umlp5.activity.util.Utils;
 import com.aula.victoriozansavio.umlp5.library.User;
 
 public class HomePageAlunoActivity extends AppCompatActivity {
@@ -15,6 +17,8 @@ public class HomePageAlunoActivity extends AppCompatActivity {
     TextView tvEmail;
     View exerciciosContainer;
     View submissionsContainer;
+    ImageView ivLogout;
+    TextView tvLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class HomePageAlunoActivity extends AppCompatActivity {
         tvNome =  findViewById(R.id.activity_hp_alu_tvNome);
         exerciciosContainer = findViewById(R.id.activity_hp_alu_llExerc);
         submissionsContainer = findViewById(R.id.activity_hp_alu_llSubm);
+        ivLogout = findViewById(R.id.activity_hp_alu_ivSair);
+        tvLogout = findViewById(R.id.activity_hp_alu_tvSair);
 
         exerciciosContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +57,22 @@ public class HomePageAlunoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), SubmissoesActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ivLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.logOut(getBaseContext());
+                finish();
+            }
+        });
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.logOut(getBaseContext());
+                finish();
             }
         });
 

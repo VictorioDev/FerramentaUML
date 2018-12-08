@@ -10,8 +10,8 @@ import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
 import com.aula.victoriozansavio.umlp5.library.User;
 import com.google.gson.Gson;
 
+
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -27,15 +27,15 @@ public class UserModel {
     public static void getUserById(String id, String token, final Context context, final UserActionInterface userActionInterface) {
         Retrofit retrofit = RetrofitBuilder.build(ScalarsConverterFactory.create());
         UserServiceAPI serviceAPI = retrofit.create(UserServiceAPI.class);
+        Log.i("App", "Getting User, ID: " + id);
 
-        Log.i("App", "UserModelToken: " + token);
         serviceAPI.getUser(id, token).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
-                    Log.i("App", response.body());
+                    Log.i("App", "LoginResponse: " + response.body());
                     try {
-                        JSONObject userJson = new JSONObject(response.body());
+                        org.json.JSONObject userJson = new org.json.JSONObject(response.body());
                         User user = new Gson().fromJson(userJson.get("user").toString(), User.class);
                         userActionInterface.workWithUser(user);
                     } catch (JSONException e) {

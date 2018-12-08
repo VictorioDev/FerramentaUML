@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,8 +22,10 @@ import com.aula.victoriozansavio.umlp5.API.UserServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
 import com.aula.victoriozansavio.umlp5.library.LoginResult;
 import com.aula.victoriozansavio.umlp5.library.User;
+import com.aula.victoriozansavio.umlp5.model.UserModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -41,10 +44,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements UserActionInterface {
 
     EditText edtEmail;
     EditText edtSenha;
+    CheckBox chkProfessor;
 
     TextView tvRecuperaSenha;
 
@@ -55,18 +59,24 @@ public class LoginActivity extends AppCompatActivity {
 
     String senha;
     String email;
+    String id = "";
+    String token = "";
+    boolean isProfessor = false;
 
 
+    UserActionInterface userActionInterface;
 
     boolean passwordView = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String id = Utils.getId(getBaseContext());
-        String token = Utils.getToken(getBaseContext());
+
+        userActionInterface = this;
+         id = Utils.getId(getBaseContext());
+         token = Utils.getToken(getBaseContext());
         if(Utils.verifyUserTokenValidation(id, token, getBaseContext())){
-            getUserInfo(id, token);
+            UserModel.getUserById(id, token, getBaseContext(), userActionInterface);
         }else{
             setContentView(R.layout.activity_login);
             initViews();
@@ -91,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.activity_login_btnLogin);
         btnCadastrar = (Button) findViewById(R.id.activity_login_btnCadastrar);
         tvRecuperaSenha = (TextView) findViewById(R.id.activity_login_tvSenha);
+        chkProfessor = findViewById(R.id.activity_login_checkProf);
 
         tvRecuperaSenha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,49 +142,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void openHomePage(User user){
-        Intent i = new Intent(getBaseContext(), HomePageAlunoActivity.class);
+        user.setLevel(3);
+        Intent i;
+        if(user.getLevel() == 2){
+            i = new Intent(getBaseContext(), HomePageAlunoActivity.class);
+        }else {
+            i = new Intent(getBaseContext(), HomePageProfessorActivity.class);
+        }
         i.putExtra("user", user);
         startActivity(i);
     }
 
-    private void getUserInfo(String id, String token){
-        ProgressDialog progressDialog = new ProgressDialog(getBaseContext());
-        progressDialog.setTitle("Busca informações...");
 
-        Retrofit retrofit = RetrofitBuilder.build(ScalarsConverterFactory.create());
-
-        UserServiceAPI serviceAPI = retrofit.create(UserServiceAPI.class);
-
-        serviceAPI.getUser(id, token).enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful()){
-                    Log.i("App", response.body());
-                    try {
-                        JSONObject userJson = new JSONObject(response.body());
-                        User user = new Gson().fromJson(userJson.get("user").toString(), User.class);
-                        openHomePage(user);
-                        finish();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }else {
-                    Toast.makeText(getBaseContext(),"Falha ao buscar as informações!", Toast.LENGTH_SHORT ).show();
-                    try {
-                        Log.i("App", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.i("App", "Falha na requisição! \n " + t.getMessage());
-            }
-        });
-
-    }
 
     private void login(User user) {
 
@@ -191,9 +171,12 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     LoginResult loginResult = response.body();
                     Utils.saveToken(loginResult, getBaseContext());
-                    Log.i("App", loginResult.getToken());
+                    token = loginResult.getToken();
+                    id = loginResult.getId();
+                    Log.i("App", "LoginToken: " + loginResult.getToken());
                     Toast.makeText(getBaseContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                    getUserInfo(loginResult.getId(), loginResult.getId());
+
+                    UserModel.getUserById(id, token, getBaseContext(), userActionInterface);
                 }else {
                     try {
                         Log.i("App", response.errorBody().string());
@@ -219,7 +202,11 @@ public class LoginActivity extends AppCompatActivity {
         User user = new User();
         user.setEmail(email);
         user.setPassword(senha);
-        user.setLevel(2);
+        if(isProfessor){
+            user.setLevel(3);
+        }else {
+            user.setLevel(2);
+        }
         return user;
     }
 
@@ -246,11 +233,19 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validaCampos() {
         email = edtEmail.getText().toString();
         senha = edtSenha.getText().toString();
+        isProfessor = chkProfessor.isChecked();
         if(email.isEmpty() || senha.isEmpty()){
             Toast.makeText(this, "Existem campos não preenchidos!", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return  true;
+    }
+
+    @Override
+    public void workWithUser(User user) {
+        Log.i("App", "UserLevel: " + user.getLevel());
+        openHomePage(user);
+        finish();
     }
 }

@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.aula.victoriozansavio.umlp5.activity.SeusExerciciosActivity">
     <TextView
+        android:id="@+id/activity_seus_exercios_tvNome"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
@@ -16,16 +17,19 @@
         />
 
     <TextView
+        android:id="@+id/activity_seus_exercios_tvQtdEx"
         android:text="1 exercício(s)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/activity_seus_exercios_edtBuscaEx"
         android:hint="Busque um exercício específico..."
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_seus_exercios_rvExercicios"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
