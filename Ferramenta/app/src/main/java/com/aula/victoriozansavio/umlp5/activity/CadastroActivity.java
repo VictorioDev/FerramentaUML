@@ -2,9 +2,7 @@ package com.aula.victoriozansavio.umlp5.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -18,12 +16,8 @@ import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.API.UserServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
-import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
+import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.library.User;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -32,7 +26,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class CadastroActivity extends AppCompatActivity {
 

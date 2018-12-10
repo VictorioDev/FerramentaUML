@@ -1,17 +1,11 @@
-package com.aula.victoriozansavio.umlp5.activity.util;
+package com.aula.victoriozansavio.umlp5.util;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.ImageViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.activity.LoginActivity;
 import com.aula.victoriozansavio.umlp5.library.LoginResult;
 
@@ -31,6 +25,7 @@ public class Utils {
         editor.putString("token", loginResult.getToken());
         editor.putString("expiration", loginResult.getExpiration());
         editor.putString("id", loginResult.getId());
+        editor.putString("level", loginResult.getLevel() + "");
         if(!editor.commit()){
             Toast.makeText(context, "Erro ao salvar Preferences!", Toast.LENGTH_SHORT).show();
         }
@@ -51,6 +46,12 @@ public class Utils {
         SharedPreferences sharedPreferences = context.getSharedPreferences("Faedu", Context.MODE_PRIVATE);
         return  sharedPreferences.getString("id","");
     }
+
+    public static String getLevel(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Faedu", Context.MODE_PRIVATE);
+        return  sharedPreferences.getString("level","");
+    }
+
 
     public static boolean verifyUserTokenValidation(String id, String token, Context context){
         if(!id.isEmpty()){

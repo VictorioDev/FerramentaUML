@@ -11,12 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aula.victoriozansavio.umlp5.API.ExerciseServiceAPI;
-import com.aula.victoriozansavio.umlp5.API.UserServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
-import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
-import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.adapter.BuscaExercicioAdapter;
-import com.aula.victoriozansavio.umlp5.adapter.BuscaProfessorAdapter;
 import com.aula.victoriozansavio.umlp5.library.Exercise;
 import com.aula.victoriozansavio.umlp5.library.User;
 

@@ -1,6 +1,7 @@
 package com.aula.victoriozansavio.umlp5.activity;
 
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ImageViewCompat;
@@ -16,20 +17,17 @@ import android.widget.Toast;
 import com.aula.victoriozansavio.umlp5.API.SubmissionServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.Sketch;
-import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
-import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.model.ExerciseModel;
+import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
 import com.aula.victoriozansavio.umlp5.library.Exercise;
 import com.aula.victoriozansavio.umlp5.library.Submission;
 import com.aula.victoriozansavio.umlp5.library.User;
 import com.aula.victoriozansavio.umlp5.model.UserModel;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.List;
 
 import processing.android.PFragment;
 import retrofit2.Call;
@@ -149,7 +147,18 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
                 Utils.redirectToLoginPage(getBaseContext());
             }else {
                 String json = sketch.saveToJson();
-                UserModel.getUserById(id, token, getBaseContext(), this);
+                Long level = Long.parseLong(Utils.getLevel(getBaseContext()));
+                if(level == 2){
+                    exercise.setJson(json);
+                    ExerciseModel.saveExercise(token, exercise);
+                    Intent i = new Intent(this, HomePageProfessorActivity.class);
+                    i.putExtra("user", exercise.getAuthor());
+                    startActivity(i);
+                    finish();
+                }else {
+                    UserModel.getUserById(id, token, getBaseContext(), this);
+                }
+
                 Toast.makeText(this, "Salvando...", Toast.LENGTH_SHORT).show();
                 Log.i("App", json);
             }

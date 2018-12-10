@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aula.victoriozansavio.umlp5.R;
-import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.library.User;
 
 public class HomePageAlunoActivity extends AppCompatActivity {

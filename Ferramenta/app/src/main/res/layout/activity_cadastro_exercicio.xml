@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.aula.victoriozansavio.umlp5.activity.util.CadastroExercicioActivity">
+    android:orientation="vertical"
+    tools:context="com.aula.victoriozansavio.umlp5.activity.CadastroExercicioActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Spinner
+                android:id="@+id/activity_cadastro_exercicio_spnTipDiag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/activity_cadastro_exercicio_edtTitExer"
+                android:hint="Titulo Exercício..."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/activity_cadastro_exercicio_edtDescExer"
+                android:hint="Descrição do exercício..."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <Button
+                android:id="@+id/activity_cadastro_exercicio_btnCadastrarExercicio"
+                android:layout_marginTop="15dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Cadastrar Solução"
+                android:textColor="@android:color/white"
+                android:background="@color/colorPrimary"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

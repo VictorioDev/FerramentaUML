@@ -85,7 +85,7 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".activity.util.CadastroExercicioActivity"></activity>
+        <activity android:name=".activity.CadastroExercicioActivity"></activity>
     </application>
 
 </manifest>

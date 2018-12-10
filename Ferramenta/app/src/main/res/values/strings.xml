@@ -4,6 +4,10 @@
     <string name="welcome">Welcome to Android App Development</string>
     <string name="android_logo">Android Logo</string>
     <string name="deitel_logo">Deitel double-thubs-up bug logo</string>
+    <string-array name="tipos_diagrama">
+        <item>Diagrama de Classe</item>
+        <item>Diagrama de Use Case</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

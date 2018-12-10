@@ -1,8 +1,7 @@
-package com.aula.victoriozansavio.umlp5.activity.util;
+package com.aula.victoriozansavio.umlp5.util;
 
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by Victorio Zansavio on 05/12/2018.

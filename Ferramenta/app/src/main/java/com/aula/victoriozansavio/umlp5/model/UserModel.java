@@ -5,7 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.API.UserServiceAPI;
-import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
+import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
 import com.aula.victoriozansavio.umlp5.library.User;
 import com.google.gson.Gson;

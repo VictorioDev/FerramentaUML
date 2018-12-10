@@ -3,12 +3,14 @@ package com.aula.victoriozansavio.umlp5.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aula.victoriozansavio.umlp5.R;
-import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.library.Exercise;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.library.User;
 
 public class HomePageProfessorActivity extends AppCompatActivity {
@@ -18,6 +20,8 @@ public class HomePageProfessorActivity extends AppCompatActivity {
     View containerEx;
     TextView tvSair;
     ImageView ivSair;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class HomePageProfessorActivity extends AppCompatActivity {
 
         if(bundle != null){
             User userLogged = (User) bundle.get("user");
+
             tvNome.setText(userLogged.getNome());
             tvInstituicao.setText(userLogged.getOrganization());
         }
@@ -54,6 +59,7 @@ public class HomePageProfessorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.logOut(getBaseContext());
+                Utils.redirectToLoginPage(getBaseContext());
                 finish();
             }
         });
@@ -62,8 +68,11 @@ public class HomePageProfessorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.logOut(getBaseContext());
+                Utils.redirectToLoginPage(getBaseContext());
                 finish();
             }
         });
+
+
     }
 }

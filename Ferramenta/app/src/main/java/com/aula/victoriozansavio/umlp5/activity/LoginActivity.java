@@ -1,11 +1,8 @@
 package com.aula.victoriozansavio.umlp5.activity;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -20,20 +17,13 @@ import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.API.UserServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
-import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
-import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.library.Exercise;
+import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
 import com.aula.victoriozansavio.umlp5.library.LoginResult;
 import com.aula.victoriozansavio.umlp5.library.User;
 import com.aula.victoriozansavio.umlp5.model.UserModel;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -42,7 +32,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements UserActionInterface {
 
@@ -149,6 +138,7 @@ public class LoginActivity extends AppCompatActivity implements UserActionInterf
         }else {
             i = new Intent(getBaseContext(), HomePageProfessorActivity.class);
         }
+
         i.putExtra("user", user);
         startActivity(i);
     }

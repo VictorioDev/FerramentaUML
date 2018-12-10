@@ -8,8 +8,8 @@ import android.util.Log;
 
 import com.aula.victoriozansavio.umlp5.API.SubmissionServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
-import com.aula.victoriozansavio.umlp5.activity.util.RetrofitBuilder;
-import com.aula.victoriozansavio.umlp5.activity.util.Utils;
+import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.adapter.SubmissoesAdapter;
 import com.aula.victoriozansavio.umlp5.library.Submission;
 
