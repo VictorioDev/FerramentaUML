@@ -37,7 +37,7 @@ public class UserModel {
                     try {
                         org.json.JSONObject userJson = new org.json.JSONObject(response.body());
                         User user = new Gson().fromJson(userJson.get("user").toString(), User.class);
-                        userActionInterface.workWithUser(user);
+                        userActionInterface.onUserRetrieved(user);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

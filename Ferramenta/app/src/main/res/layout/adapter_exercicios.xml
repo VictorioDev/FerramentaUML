@@ -6,6 +6,7 @@
     >
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/adapter_exercicios_tvExercicio"
         android:text="#1 - Problema do Banco"
         android:layout_width="wrap_content"
@@ -26,12 +27,13 @@
     <TextView
 
         android:text="Descrição: Lorem ipsum dolor sit amet, consecter hwodh ao d h w  oahd oawh "
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/adapter_exercicios_tvTipoDiagrama"
         android:id="@+id/adapter_exercicios_tvDesc" />
 
     <ImageView
+        android:id="@+id/adapter_exercicios_btnEdit"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignBottom="@+id/adapter_exercicios_tvDesc"
@@ -39,6 +41,19 @@
         android:layout_alignParentRight="true"
         android:background="@color/colorPrimary"
         android:padding="10dp"
-        android:src="@drawable/ic_pencil" />
+        android:src="@drawable/ic_pencil"
+        android:layout_marginLeft="10dp"/>
+
+    <ImageView
+        android:id="@+id/adapter_exercicios_btnRemove"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/adapter_exercicios_tvDesc"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:src="@drawable/ic_close"
+        android:tint="@android:color/white"
+        android:layout_toLeftOf="@+id/adapter_exercicios_btnEdit"
+        />
 
 </RelativeLayout>

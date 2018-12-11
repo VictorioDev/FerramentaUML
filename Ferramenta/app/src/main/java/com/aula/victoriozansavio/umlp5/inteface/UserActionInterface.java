@@ -4,5 +4,5 @@ import com.aula.victoriozansavio.umlp5.library.User;
 
 public interface UserActionInterface {
 
-    void workWithUser(User user);
+    void onUserRetrieved(User user);
 }

@@ -2,17 +2,11 @@ package com.aula.victoriozansavio.umlp5;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.component.Actor;
-import com.aula.victoriozansavio.umlp5.component.Anotation;
+import com.aula.victoriozansavio.umlp5.component.Annotation;
 import com.aula.victoriozansavio.umlp5.component.Association;
 import com.aula.victoriozansavio.umlp5.component.Extend;
 import com.aula.victoriozansavio.umlp5.component.Generalization;
@@ -22,9 +16,7 @@ import com.aula.victoriozansavio.umlp5.library.JsonStructure;
 import com.aula.victoriozansavio.umlp5.library.Option;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.SerializedName;
 
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,6 +31,7 @@ public class Sketch extends PApplet {
 
     // Main Variables
     private ArrayList<UseCase> tempCase = new ArrayList<>();
+    private ArrayList<Actor> tempActor = new ArrayList<>();
     private int id = 1;
     private int mode;
     private Context sketchContext;
@@ -52,7 +45,9 @@ public class Sketch extends PApplet {
     private List<Actor> actorList = new ArrayList<>();
     private List<Include> includeList = new ArrayList<>();
     private List<Extend> extendList = new ArrayList<>();
-    private List<Anotation> anotationList = new ArrayList<>();
+    private List<Annotation> annotationList = new ArrayList<>();
+
+    private String json = "";
 
 
     //Action modes
@@ -87,6 +82,95 @@ public class Sketch extends PApplet {
 
     }
 
+    public Sketch(Context sketchContext, String json) {
+        super();
+        this.setSketchContext(sketchContext);
+
+        /*this.useCase = new UseCase(0, 200, 200, "Realizar Login", this);
+        this.useCase2 = new UseCase(0, 400, 600, "Realizar Login", this);
+        this.association = new Association(0, 1, 1, this);
+        this.association.setPositions(useCase.getX(), useCase.getY(), useCase2.getX(), useCase2.getY());
+        this.actor = new Actor(0,300, 800, "Cliente", this);
+        this.actor2 = new Actor(0, 300, 1600, "Gerente", this);
+        //this.extend = new Extend(0, 1 , 1, this);
+        //extend.setPositions(actor.getX(), actor.getY(), actor2.getX(), actor2.getY());
+        this.include = new Include(0,0,0, this);
+        this.include.setPositions(actor.getX(), actor.getY(), actor2.getX(), actor2.getY());*/
+        //this.useCaseList = mockData();
+        this.json = json;
+        convertToList();
+    }
+
+    private void convertToList() {
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+
+        JsonStructure jsonStructure = gson.fromJson(json, JsonStructure.class);
+        if(jsonStructure != null){
+            Log.i("App", "JsonSize:" + jsonStructure.getUseCaseList().size());
+            for (UseCase useCase : jsonStructure.getUseCaseList()){
+                UseCase u = new UseCase();
+                u.setX(useCase.getX());
+                u.setY(useCase.getY());
+                u.setId(useCase.getId());
+                u.setName(useCase.getName());
+                u.setDrawContainer(this);
+                useCaseList.add(u);
+            }
+
+            for (Actor actor: jsonStructure.getActorList()){
+                Actor a = new Actor();
+                a.setX(actor.getX());
+                a.setY(actor.getY());
+                a.setId(actor.getId());
+                a.setName(actor.getName());
+                a.setDrawContainer(this);
+                actorList.add(a);
+            }
+
+            for(Extend extend: jsonStructure.getExtendList()){
+                Extend e = new Extend();
+                e.setId(extend.getId());
+                e.setFrom(extend.getFrom());
+                e.setTo(extend.getTo());
+                e.setDrawContainer(this);
+                extendList.add(e);
+            }
+
+            for(Include include: jsonStructure.getIncludeList()){
+                Include i = new Include();
+                i.setId(include.getId());
+                i.setFrom(include.getFrom());
+                i.setTo(include.getTo());
+                i.setDrawContainer(this);
+                includeList.add(i);
+            }
+
+            for(Association association: jsonStructure.getAssociationList()){
+                Association ass = new Association();
+                ass.setId(association.getId());
+                ass.setFrom(association.getFrom());
+                ass.setTo(association.getTo());
+                ass.setDrawContainer(this);
+                associationList.add(ass);
+            }
+
+            for(Annotation annotation : jsonStructure.getAnnotationList()){
+                Annotation ass =  new Annotation();
+                ass.setId(annotation.getId());
+                ass.setX(annotation.getX());
+                ass.setY(annotation.getY());
+                ass.setText(annotation.getText());
+                ass.setDrawContainer(this);
+                annotationList.add(ass);
+            }
+
+        }
+
+
+    }
+
     private ArrayList<UseCase> mockData(){
         ArrayList<UseCase> useCases = new ArrayList<>();
         Random r = new Random();
@@ -101,11 +185,16 @@ public class Sketch extends PApplet {
 
     public String saveToJson(){
         Gson gson = new GsonBuilder()
-                .excludeFieldsWithModifiers(Modifier.TRANSIENT)
+                .excludeFieldsWithoutExposeAnnotation()
                 .create();
-
         JsonStructure jsonStructure = new JsonStructure();
+
         jsonStructure.setUseCaseList(useCaseList);
+        jsonStructure.setActorList(actorList);
+        jsonStructure.setExtendList(extendList);
+        jsonStructure.setIncludeList(includeList);
+        jsonStructure.setAssociationList(associationList);
+        jsonStructure.setAnnotationList(annotationList);
         return gson.toJson(jsonStructure);
     }
 
@@ -166,12 +255,36 @@ public class Sketch extends PApplet {
             e.draw();
         }
 
+        for (Association association : associationList) {
+            int x1, y1, x2, y2;
+            x1 = x2 = y1 = y2 = 0;
+            for (UseCase u : useCaseList) {
+               if (u.getId() == association.getTo()) {
+                    x2 = u.getCenter()[0];
+                    y2 = u.getCenter()[1];
+                }
+            }
+
+            for (Actor actor : actorList) {
+               if (actor.getId() == association.getFrom()) {
+                    x1 = actor.getCenter()[0];
+                    y1 = actor.getCenter()[1];
+                }
+            }
+            association.setPositions(x1, y1, x2, y2);
+            association.draw();
+        }
+
+
+
         for (UseCase u : useCaseList)
             u.draw(mouseX, mouseY);
 
         for (Actor a : actorList)
             a.draw(mouseX, mouseY);
 
+        for(Annotation annotation: annotationList)
+            annotation.draw();
 
     }
 
@@ -219,6 +332,7 @@ public class Sketch extends PApplet {
                     return;
                 }
             }
+
         }
     }
 
@@ -234,21 +348,35 @@ public class Sketch extends PApplet {
                 useCaseList.add(new UseCase(getId(), mouseX, mouseY, "Teste", this));
             } else if (key.equals("actor") && action.equals("E")) {
                 actorList.add(new Actor(getId(), mouseX, mouseY, "Cliente", this));
-            } else if ((key.equals("include") || key.equals("extend")) && action.equals("E")) {
+            } else if ((key.equals("include") || key.equals("extend") || key.equals("association")) && action.equals("E")) {
                 for (UseCase useCase : useCaseList) {
                     if (useCase.isHover()) {
                         tempCase.add(useCase);
-                        break;
+                        Log.i("App", "Temp Added: " + useCase.getId());
                     }
                 }
-                if (tempCase.size() == 2) {
+
+                for (Actor actor: actorList) {
+                    if (actor.isHover()) {
+                        tempActor.add(actor);
+                        Log.i("App", "Temp Added: " + actor.getId());
+                    }
+                }
+
+                if (tempCase.size() == 2 && (tempCase.get(0).getId() != tempCase.get(1).getId())) {
                     if (key.equals("include")) {
                         includeList.add(new Include(getId(), tempCase.get(0).getId(), tempCase.get(1).getId(), this));
                     } else {
                         extendList.add(new Extend(getId(), tempCase.get(0).getId(), tempCase.get(1).getId(), this));
                     }
                     clearTemp();
+                }else if(tempCase.size() == 1 && tempActor.size() == 1){
+                    Log.i("App", "Association Added");
+                    associationList.add(new Association(getId(), tempActor.get(0).getId(), tempCase.get(0).getId(), this));
+                    clearTemp();
                 }
+            }else if(key.equals("annotation") && action.equals("E")){
+                annotationList.add(new Annotation(getId(), mouseX, mouseY, "Anotacao", this));
             }
                   /*for (UseCase useCase : useCaseList) {
                         useCase.setLocked(useCase.isHover() ? true : false);
@@ -313,6 +441,7 @@ public class Sketch extends PApplet {
 
     public void clearTemp() {
         tempCase.clear();
+        tempActor.clear();
     }
 
 

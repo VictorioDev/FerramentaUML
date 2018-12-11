@@ -3,11 +3,9 @@ package com.aula.victoriozansavio.umlp5.component;
 import android.graphics.Color;
 
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import processing.core.PApplet;
 import processing.core.PConstants;
-
 import static java.lang.Math.pow;
 
 /**
@@ -16,13 +14,31 @@ import static java.lang.Math.pow;
 
 public class UseCase {
 
+    @Expose
     private int  id;
+
+    @Expose
     private int x;
+
+    @Expose
     private int y;
+
+    @Expose
     private String name;
 
+    private int offset_x;
+    private int offset_y;
+    private boolean hover;
+    private boolean locked;
+    private int textSize;
+    private int stroke;
+    private String backgroundColor;
+    private String color;
+    private int width;
+    private int height;
+    private PApplet drawContainer;
 
-    private transient int offset_x;
+    /*private transient int offset_x;
     private transient int offset_y;
     private transient boolean hover;
     private transient boolean locked;
@@ -32,8 +48,7 @@ public class UseCase {
     private transient String color;
     private transient int width;
     private transient int height;
-    private transient PApplet drawContainer;
-
+    private transient PApplet drawContainer;*/
 
     public UseCase(int id, int x, int y, String name, PApplet drawContainer){
         this.setId(id);
@@ -54,6 +69,28 @@ public class UseCase {
 
         this.setWidth(120);
         this.setHeight(75);
+        this.drawContainer = drawContainer;
+    }
+
+    public UseCase(){
+        this.setOffset_x(0);
+        this.setOffset_y(0);
+        this.setHover(false);
+        this.setLocked(false);
+        this.setTextSize(15);
+        this.setStroke(3);
+        this.setBackgroundColor("#edff00");
+        this.setColor("#000000");
+        this.setWidth(120);
+        this.setHeight(75);
+    }
+
+
+    public PApplet getDrawContainer() {
+        return drawContainer;
+    }
+
+    public void setDrawContainer(PApplet drawContainer) {
         this.drawContainer = drawContainer;
     }
 

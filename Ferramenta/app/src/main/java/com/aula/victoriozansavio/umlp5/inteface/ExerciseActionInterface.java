@@ -6,5 +6,11 @@ import java.util.List;
 
 public interface ExerciseActionInterface {
 
-    void workWithExercises(List<Exercise> exerciseList);
+    void onExercisesRetrieved(List<Exercise> exerciseList);
+
+    void onExerciseDeleted(int position);
+
+    void onExerciseSaved();
+
+    void onExerciseEdited();
 }

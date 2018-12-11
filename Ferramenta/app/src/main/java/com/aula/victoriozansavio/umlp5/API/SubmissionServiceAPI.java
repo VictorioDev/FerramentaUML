@@ -1,5 +1,6 @@
 package com.aula.victoriozansavio.umlp5.API;
 
+import com.aula.victoriozansavio.umlp5.inteface.SubmissionActionInterface;
 import com.aula.victoriozansavio.umlp5.library.Submission;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface SubmissionServiceAPI {
 
     @POST("submissions")
     Call<Submission> saveSubmission(@Header("x-access-token") String token, @Body Submission submission);
+
+    @GET("correct/{id}")
+    Call<String> doCorrection(@Header("x-access-token") String token, @Path("id") String id);
 }

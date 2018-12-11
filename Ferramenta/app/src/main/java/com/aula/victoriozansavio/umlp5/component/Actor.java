@@ -1,6 +1,9 @@
 package com.aula.victoriozansavio.umlp5.component;
 
 import android.graphics.Color;
+import android.util.Log;
+
+import com.google.gson.annotations.Expose;
 
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -13,10 +16,19 @@ import static java.lang.Math.pow;
 
 public class Actor {
 
+    @Expose
     private int id;
+
+    @Expose
     private int x;
+
+    @Expose
     private int y;
+
+    @Expose
     private String name;
+
+
     private int offset_x;
     private int offset_y;
     private boolean locked;
@@ -40,8 +52,18 @@ public class Actor {
         this.setName(name);
         this.setColor("#000000");
         this.setDrawContainer(drawContainer);
+        this.setSize(30);
+    }
 
-        this.setSize(30 * drawContainer.displayDensity);
+    public Actor() {
+        this.setOffset_x(0);
+        this.setOffset_y(0);
+        this.setLocked(false);
+        this.setHover(false);
+        this.setSize(30);
+        this.setColor("#000000");
+
+
     }
 
     public void draw(int mouseX, int mouseY) {
@@ -111,7 +133,7 @@ public class Actor {
         return ( pow( mouseX - this.getX(), 2 ) + pow( mouseY - this.getY(), 2 ) ) <= ( pow( this.getSize() / 1.2, 2 ) );
     }
 
-    private int[] getCenter() {
+    public int[] getCenter() {
         int [] xy = new int[2];
         xy[0] = this.getX();
         xy[1] = this.getY();
@@ -191,7 +213,7 @@ public class Actor {
     }
 
     public float getSize() {
-        return size;
+        return size * drawContainer.displayDensity;
     }
 
     public void setSize(float size) {

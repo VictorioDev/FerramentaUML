@@ -100,6 +100,7 @@ public class SeusExerciciosActivity extends AppCompatActivity implements Exercis
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), CadastroExercicioActivity.class);
                 i.putExtra("professor", professor);
+                i.putExtra("salvar", true);
                 startActivity(i);
             }
         });
@@ -121,7 +122,22 @@ public class SeusExerciciosActivity extends AppCompatActivity implements Exercis
     }
 
     @Override
-    public void workWithExercises(List<Exercise> exerciseList) {
+    public void onExercisesRetrieved(List<Exercise> exerciseList) {
         updateRecyclerView(exerciseList);
+    }
+
+    @Override
+    public void onExerciseDeleted(int position) {
+
+    }
+
+    @Override
+    public void onExerciseSaved() {
+
+    }
+
+    @Override
+    public void onExerciseEdited() {
+
     }
 }

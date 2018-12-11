@@ -2,6 +2,9 @@ package com.aula.victoriozansavio.umlp5.component;
 
 import android.graphics.Color;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -10,8 +13,16 @@ import processing.core.PConstants;
  */
 
 public class Include {
+
+    @Expose
     private int id;
+
+    @Expose
+    @SerializedName("de")
     private int from;
+
+    @Expose
+    @SerializedName("para")
     private int to;
     private int stroke;
     private String color;
@@ -32,6 +43,14 @@ public class Include {
         this.setSize(10);
         this.setColor("#000000");
         this.drawContainer = drawContainer;
+    }
+
+    public Include() {
+
+        this.setStroke(2);
+        this.setSize(10);
+        this.setColor("#000000");
+
     }
 
     public void draw() {
@@ -55,6 +74,14 @@ public class Include {
         this.setY1(y1);
         this.setX2(x2);
         this.setY2(y2);
+    }
+
+    public PApplet getDrawContainer() {
+        return drawContainer;
+    }
+
+    public void setDrawContainer(PApplet drawContainer) {
+        this.drawContainer = drawContainer;
     }
 
     public int getId() {

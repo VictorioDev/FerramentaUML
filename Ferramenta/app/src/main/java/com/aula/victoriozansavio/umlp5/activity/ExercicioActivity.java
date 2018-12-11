@@ -64,6 +64,8 @@ public class ExercicioActivity extends AppCompatActivity {
                     i = new Intent(getBaseContext(), ClasseActivity.class);
                 }
                 i.putExtra("exercise", exercise);
+                i.putExtra("salvar", true);
+                i.putExtra("sub", true);
                 startActivity(i);
             }
         });

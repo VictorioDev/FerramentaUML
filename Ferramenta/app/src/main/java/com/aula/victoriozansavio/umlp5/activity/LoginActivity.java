@@ -131,12 +131,12 @@ public class LoginActivity extends AppCompatActivity implements UserActionInterf
 
 
     private void openHomePage(User user){
-        user.setLevel(3);
+        //user.setLevel(3);
         Intent i;
         if(user.getLevel() == 2){
-            i = new Intent(getBaseContext(), HomePageAlunoActivity.class);
-        }else {
             i = new Intent(getBaseContext(), HomePageProfessorActivity.class);
+        }else {
+            i = new Intent(getBaseContext(), HomePageAlunoActivity.class );
         }
 
         i.putExtra("user", user);
@@ -193,9 +193,9 @@ public class LoginActivity extends AppCompatActivity implements UserActionInterf
         user.setEmail(email);
         user.setPassword(senha);
         if(isProfessor){
-            user.setLevel(3);
-        }else {
             user.setLevel(2);
+        }else {
+            user.setLevel(3);
         }
         return user;
     }
@@ -233,7 +233,7 @@ public class LoginActivity extends AppCompatActivity implements UserActionInterf
     }
 
     @Override
-    public void workWithUser(User user) {
+    public void onUserRetrieved(User user) {
         Log.i("App", "UserLevel: " + user.getLevel());
         openHomePage(user);
         finish();

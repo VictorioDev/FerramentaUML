@@ -2,6 +2,9 @@ package com.aula.victoriozansavio.umlp5.component;
 
 import android.graphics.Color;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import processing.core.PApplet;
 
 /**
@@ -10,9 +13,18 @@ import processing.core.PApplet;
 
 public class Association {
 
+    @Expose
     private int id;
+
+    @Expose
+    @SerializedName("de")
     private int from;
+
+    @Expose
+    @SerializedName("para")
     private int to;
+
+
     private int stroke;
     private String color;
     private int x1;
@@ -29,6 +41,12 @@ public class Association {
         this.setTo(to);
 
         this.setDrawContainer(drawContainer);
+
+        this.setStroke(4);
+        this.setColor("#000000");
+    }
+
+    public Association(){
 
         this.setStroke(4);
         this.setColor("#000000");

@@ -2,6 +2,9 @@ package com.aula.victoriozansavio.umlp5.component;
 
 import android.graphics.Color;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -11,9 +14,17 @@ import processing.core.PConstants;
 
 public class Extend {
 
+    @Expose
     private int id;
+
+    @Expose
+    @SerializedName("de")
     private int from;
+
+    @Expose
+    @SerializedName("para")
     private int to;
+
     private int stroke;
     private int size;
     private String color;
@@ -35,12 +46,24 @@ public class Extend {
         this.drawContainer = drawContainer;
     }
 
+    public Extend() {
+        this.setStroke(2);
+        this.setSize(10);
+        this.setColor("#000000");
+    }
+
+    public PApplet getDrawContainer() {
+        return drawContainer;
+    }
+
+    public void setDrawContainer(PApplet drawContainer) {
+        this.drawContainer = drawContainer;
+    }
+
     public void draw() {
         drawContainer.stroke(Color.parseColor(this.getColor()));
         drawContainer.strokeWeight(this.getStroke() * drawContainer.displayDensity);
-
         drawContainer.line(this.getX1(), this.getY1(), this.getX2(), this.getY2());
-
         drawContainer.noStroke();
         drawContainer.textAlign(PConstants.CENTER);
         drawContainer.textSize( 14 * drawContainer.displayDensity);

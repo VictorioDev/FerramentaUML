@@ -64,6 +64,7 @@ public class HomePageAlunoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.logOut(getBaseContext());
+                Utils.redirectToLoginPage(getBaseContext());
                 finish();
             }
         });
@@ -72,6 +73,7 @@ public class HomePageAlunoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.logOut(getBaseContext());
+                Utils.redirectToLoginPage(getBaseContext());
                 finish();
             }
         });

@@ -17,7 +17,10 @@ import android.widget.Toast;
 import com.aula.victoriozansavio.umlp5.API.SubmissionServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.Sketch;
+import com.aula.victoriozansavio.umlp5.inteface.ExerciseActionInterface;
+import com.aula.victoriozansavio.umlp5.inteface.SubmissionActionInterface;
 import com.aula.victoriozansavio.umlp5.model.ExerciseModel;
+import com.aula.victoriozansavio.umlp5.model.SubmissionModel;
 import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
@@ -28,6 +31,7 @@ import com.aula.victoriozansavio.umlp5.model.UserModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import processing.android.PFragment;
 import retrofit2.Call;
@@ -36,7 +40,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClickListener, UserActionInterface{
+public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClickListener, UserActionInterface, ExerciseActionInterface, SubmissionActionInterface {
 
     ImageView ivUseCase;
     ImageView ivPointer;
@@ -44,17 +48,24 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
     ImageView ivInclude;
     ImageView ivExtend;
     ImageView ivAnotation;
+    ImageView ivAssociation;
+
     ImageView ivSave;
     ArrayList<ImageView> toolsIcons = new ArrayList<>();
     TextView tvNomeExer;
 
     Exercise exercise = new Exercise();
 
+    SubmissionActionInterface submissionActionInterface = this;
+
     String token = "";
     String id = "";
     String json = "";
 
     String text = "";
+
+    boolean salvar;
+    boolean sub;
 
     private Sketch sketch;
     @Override
@@ -67,20 +78,27 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         Bundle b = getIntent().getExtras();
         if(b != null){
             exercise = (Exercise) b.getSerializable("exercise");
+            salvar = b.getBoolean("salvar");
+            Log.i("App", "Salvar: " + salvar);
+            sub = b.getBoolean("sub");
         }
 
         initViews();
-
-
         FrameLayout frame = findViewById(R.id.container);
         //frame.setId(CompatUtils.getUniqueViewId());
-
-
         //setContentView(frame, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
-        sketch = new Sketch(this);
+
+        if(salvar){
+            sketch = new Sketch(this);
+        }else {
+            sketch = new Sketch(this, exercise.getJson());
+        }
+
         PFragment fragment = new PFragment(sketch);
         fragment.setView(frame, this);
     }
+
+
 
     private void initViews(){
         ivUseCase = (ImageView) findViewById(R.id.ivUseCase );
@@ -91,6 +109,7 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         ivAnotation = (ImageView) findViewById(R.id.ivAnotation );
         ivSave = (ImageView) findViewById(R.id.activity_case_ivSave);
         tvNomeExer = (TextView) findViewById(R.id.activity_use_case_tvTitle);
+        ivAssociation = findViewById(R.id.ivAssociation);
 
         tvNomeExer.setText(exercise.getTitle());
 
@@ -101,6 +120,7 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         ivExtend.setOnClickListener(this);
         ivAnotation.setOnClickListener(this);
         ivSave.setOnClickListener(this);
+        ivAssociation.setOnClickListener(this);
 
         toolsIcons.add(ivUseCase);
         toolsIcons.add(ivPointer);
@@ -108,6 +128,7 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         toolsIcons.add(ivInclude);
         toolsIcons.add(ivExtend);
         toolsIcons.add(ivAnotation);
+        toolsIcons.add(ivAssociation);
         /*tvUseCase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,35 +158,36 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
             sketch.clearTemp();
             changeTint(ivExtend);
         }else if(view.getId() == ivAnotation.getId()){
-            sketch.modifyActions("anotation");
+            sketch.modifyActions("annotation");
             sketch.clearTemp();
             changeTint(ivAnotation);
+        }else if(view.getId() == ivAssociation.getId()){
+            sketch.modifyActions("association");
+            sketch.clearTemp();
+            changeTint(ivAssociation);
         } else if(view.getId() == ivSave.getId()){
             token = Utils.getToken(getBaseContext());
             id = Utils.getId(getBaseContext());
             if(!Utils.verifyUserTokenValidation(id, token, getBaseContext())){
                 Utils.redirectToLoginPage(getBaseContext());
             }else {
-                String json = sketch.saveToJson();
-                Long level = Long.parseLong(Utils.getLevel(getBaseContext()));
-                if(level == 2){
-                    exercise.setJson(json);
-                    ExerciseModel.saveExercise(token, exercise);
-                    Intent i = new Intent(this, HomePageProfessorActivity.class);
-                    i.putExtra("user", exercise.getAuthor());
-                    startActivity(i);
-                    finish();
+                json = sketch.saveToJson();
+                if(salvar){
+                    if(!sub){
+                        exercise.setJson(json);
+                        UserModel.getUserById(id, token, getBaseContext(), this);
+
+                    }else {
+                        UserModel.getUserById(id, token, getBaseContext(), this);
+                    }
                 }else {
-                    UserModel.getUserById(id, token, getBaseContext(), this);
+                    exercise.setJson(json);
+                    ExerciseModel.editExercise(token, exercise.getId(), exercise, this);
                 }
 
-                Toast.makeText(this, "Salvando...", Toast.LENGTH_SHORT).show();
                 Log.i("App", json);
             }
-
-
         }
-
         sketch.wichIsTrue(getBaseContext());
     }
 
@@ -179,33 +201,7 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         return submission;
     }
 
-    private void saveSubmission(Submission submission){
-        Retrofit retrofit = RetrofitBuilder.build(GsonConverterFactory.create());
-        SubmissionServiceAPI submissionServiceAPI = retrofit.create(SubmissionServiceAPI.class);
 
-        submissionServiceAPI.saveSubmission(token
-                , submission).enqueue(new Callback<Submission>() {
-            @Override
-            public void onResponse(Call<Submission> call, Response<Submission> response) {
-                Log.i("App", "URL: ");
-                if (response.isSuccessful()){
-                    Log.i("App", "Deu certo!");
-                }else {
-                    try {
-                        Log.i("App", "Erro:  " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Submission> call, Throwable t) {
-                Log.i("App", "Falhou: " + t.getMessage());
-            }
-        });
-
-    }
 
     private  void changeTint(ImageView view) {
         view.setColorFilter(ContextCompat.getColor(getBaseContext(),
@@ -221,7 +217,48 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
 
 
     @Override
-    public void workWithUser(User user) {
-        saveSubmission(buildObject(user, json));
+    public void onUserRetrieved(User user) {
+        if(sub){
+            SubmissionModel.saveSubmission(token,buildObject(user, json),getBaseContext(), submissionActionInterface);
+            Toast.makeText(getBaseContext(), "Salvando submissao!", Toast.LENGTH_SHORT).show();
+        }else {
+            exercise.setAuthor(user);
+            ExerciseModel.saveExercise(token, exercise, this);
+        }
+
+    }
+
+    @Override
+    public void onExercisesRetrieved(List<Exercise> exerciseList) {
+
+    }
+
+    @Override
+    public void onExerciseDeleted(int position) {
+
+    }
+
+    @Override
+    public void onExerciseSaved() {
+        Intent i = new Intent(this, HomePageProfessorActivity.class);
+        i.putExtra("user", exercise.getAuthor());
+        Toast.makeText(getBaseContext(), "Salvando exercicio!", Toast.LENGTH_SHORT).show();
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void onExerciseEdited() {
+        Intent i = new Intent(this, HomePageProfessorActivity.class);
+        i.putExtra("user", exercise.getAuthor());
+        Toast.makeText(getBaseContext(), "Editando exercicio!", Toast.LENGTH_SHORT).show();
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void OnSubmissionSaved(Submission submission) {
+        Log.i("App", "Correction: " + submission.getId());
+        SubmissionModel.doCorrection(token, submission.getId());
     }
 }

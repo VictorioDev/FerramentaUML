@@ -3,6 +3,7 @@ package com.aula.victoriozansavio.umlp5.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,7 +32,8 @@ public class CadastroExercicioActivity extends AppCompatActivity {
     String token = "";
 
     User professor = new User();
-
+    Exercise exercise = null;
+    boolean salvar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class CadastroExercicioActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
             professor = (User) bundle.getSerializable("professor");
+            exercise = (Exercise) bundle.getSerializable("exercise");
+            salvar = bundle.getBoolean("salvar");
+            Log.i("App", "Salvar:" + salvar);
         }
 
         initViews();
@@ -63,7 +68,10 @@ public class CadastroExercicioActivity extends AppCompatActivity {
                     }else {
                         i = new Intent(getBaseContext(), ClasseActivity.class);
                     }
+
                     i.putExtra("exercise", exercise);
+                    i.putExtra("salvar", salvar);
+                    i.putExtra("sub", false);
                     startActivity(i);
                 }
             }
@@ -76,11 +84,23 @@ public class CadastroExercicioActivity extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spnTpDiagrama.setAdapter(spinnerArrayAdapter);
 
+        if(!salvar){
+            edtTitulo.setText(exercise.getTitle());
+            edtDesc.setText(exercise.getDescription());
+            if(exercise.getType() == 1){
+                spnTpDiagrama.setSelection(1);
+            }else {
+                spnTpDiagrama.setSelection(2);
+            }
+        }
+
     }
 
     private Exercise buildObject() {
-        Exercise exercise = new Exercise();
-        exercise.setAuthor(professor);
+        if(salvar){
+            exercise = new Exercise();
+            exercise.setAuthor(professor);
+        }
         exercise.setDescription(descricao);
         exercise.setTitle(titulo);
         exercise.setType(tipoDiag);
