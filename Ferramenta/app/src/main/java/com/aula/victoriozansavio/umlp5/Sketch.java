@@ -1,8 +1,14 @@
 package com.aula.victoriozansavio.umlp5;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.component.Actor;
@@ -12,6 +18,7 @@ import com.aula.victoriozansavio.umlp5.component.Extend;
 import com.aula.victoriozansavio.umlp5.component.Generalization;
 import com.aula.victoriozansavio.umlp5.component.Include;
 import com.aula.victoriozansavio.umlp5.component.UseCase;
+import com.aula.victoriozansavio.umlp5.inteface.DialogActionsInterface;
 import com.aula.victoriozansavio.umlp5.library.JsonStructure;
 import com.aula.victoriozansavio.umlp5.library.Option;
 import com.google.gson.Gson;
@@ -27,7 +34,7 @@ import processing.core.PApplet;
  * Created by Victorio Zansavio on 05/10/2018.
  */
 
-public class Sketch extends PApplet {
+public class Sketch extends PApplet implements DialogActionsInterface {
 
     // Main Variables
     private ArrayList<UseCase> tempCase = new ArrayList<>();
@@ -46,8 +53,10 @@ public class Sketch extends PApplet {
     private List<Include> includeList = new ArrayList<>();
     private List<Extend> extendList = new ArrayList<>();
     private List<Annotation> annotationList = new ArrayList<>();
+    private DialogActionsInterface dialogActionsInterface = this;
 
     private String json = "";
+
 
 
     //Action modes
@@ -98,6 +107,7 @@ public class Sketch extends PApplet {
         this.include.setPositions(actor.getX(), actor.getY(), actor2.getX(), actor2.getY());*/
         //this.useCaseList = mockData();
         this.json = json;
+        Log.i("App", "JsonBeforeConvert: " + json);
         convertToList();
     }
 
@@ -169,17 +179,6 @@ public class Sketch extends PApplet {
         }
 
 
-    }
-
-    private ArrayList<UseCase> mockData(){
-        ArrayList<UseCase> useCases = new ArrayList<>();
-        Random r = new Random();
-        String name1 = r.nextInt(100) + "";
-        useCases.add(new UseCase(1, 300,300, name1,this ));
-
-        String name2 = r.nextInt(100) + "";
-        useCases.add(new UseCase(1, 100,200, name2,this ));
-        return  useCases;
     }
 
 
@@ -283,8 +282,10 @@ public class Sketch extends PApplet {
         for (Actor a : actorList)
             a.draw(mouseX, mouseY);
 
-        for(Annotation annotation: annotationList)
+        for(Annotation annotation: annotationList){
             annotation.draw();
+            //Log.i("App", "Anotation: " + annotation.getText());
+        }
 
     }
 
@@ -336,6 +337,8 @@ public class Sketch extends PApplet {
         }
     }
 
+
+
     private void checkActions(String action) {
         String key = "";
         for (Option option : options) {
@@ -345,9 +348,11 @@ public class Sketch extends PApplet {
         Log.i("APP", "KEY: " + key);
         if (!key.isEmpty()) {
             if (key.equals("usecase") && action.equals("E")) {
-                useCaseList.add(new UseCase(getId(), mouseX, mouseY, "Teste", this));
+                showDInputDialog("Caso de Uso", dialogActionsInterface);
+                //useCaseList.add(new UseCase(getId(), mouseX, mouseY, "Teste", this));
             } else if (key.equals("actor") && action.equals("E")) {
-                actorList.add(new Actor(getId(), mouseX, mouseY, "Cliente", this));
+                showDInputDialog("Ator", dialogActionsInterface);
+                //actorList.add(new Actor(getId(), mouseX, mouseY, "Cliente", this));
             } else if ((key.equals("include") || key.equals("extend") || key.equals("association")) && action.equals("E")) {
                 for (UseCase useCase : useCaseList) {
                     if (useCase.isHover()) {
@@ -376,7 +381,8 @@ public class Sketch extends PApplet {
                     clearTemp();
                 }
             }else if(key.equals("annotation") && action.equals("E")){
-                annotationList.add(new Annotation(getId(), mouseX, mouseY, "Anotacao", this));
+                showDInputDialog("Anotação", dialogActionsInterface);
+                //annotationList.add(new Annotation(getId(), mouseX, mouseY, "Anotacao", this));
             }
                   /*for (UseCase useCase : useCaseList) {
                         useCase.setLocked(useCase.isHover() ? true : false);
@@ -387,6 +393,38 @@ public class Sketch extends PApplet {
         }
     }
 
+    private void showDInputDialog(final String action, final DialogActionsInterface dialogActionsInterface){
+        ((AppCompatActivity) sketchContext).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final Dialog dialog = new Dialog(sketchContext);
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.setContentView(R.layout.dialog_input);
+                Button btnIncluir = dialog.findViewById(R.id.dialog_novo_btnIncluir);
+                Button btnCancelar = dialog.findViewById(R.id.dialog_novo_btnCancelar);
+                TextView tvTiop = dialog.findViewById(R.id.dialog_novo_tvTipo);
+                tvTiop.setText(action);
+
+                btnCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                final EditText edtTexto = dialog.findViewById(R.id.dialog_novo_edtTexto);
+                btnIncluir.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogActionsInterface.onTextIncluded(edtTexto.getText().toString(), action);
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+    }
 
     public int getMode() {
         return mode;
@@ -450,7 +488,7 @@ public class Sketch extends PApplet {
         for (Option option : options)
             if (option.isValue()) key = option.getKey();
 
-        Toast.makeText(context, "Mode: " + key, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Mode: " + key, Toast.LENGTH_SHORT).show();
     }
 
     public String wichIsTrue() {
@@ -467,4 +505,15 @@ public class Sketch extends PApplet {
     }
 
 
+    @Override
+    public void onTextIncluded(String text, String action) {
+        if(action.equals("Caso de Uso")){
+            useCaseList.add(new UseCase(getId(), mouseX, mouseY, text, this));
+        }else if(action.equals("Ator")){
+            actorList.add(new Actor(getId(), mouseX, mouseY, text, this));
+        }else if(action.equals("Anotação")){
+            annotationList.add(new Annotation(getId(), mouseX, mouseY, text, this));
+            Log.i("App", "AnnotationList: " + annotationList.size());
+        }
+    }
 }

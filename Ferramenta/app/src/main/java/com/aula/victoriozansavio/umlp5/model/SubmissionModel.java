@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.aula.victoriozansavio.umlp5.API.SubmissionServiceAPI;
 import com.aula.victoriozansavio.umlp5.inteface.SubmissionActionInterface;
+import com.aula.victoriozansavio.umlp5.library.Correction;
 import com.aula.victoriozansavio.umlp5.library.Exercise;
 import com.aula.victoriozansavio.umlp5.library.Submission;
 import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
@@ -20,15 +21,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SubmissionModel {
-    public static void doCorrection(String token, String id){
-        Retrofit retrofit = RetrofitBuilder.build(ScalarsConverterFactory.create());
+    public static void doCorrection(String token, String id, final SubmissionActionInterface submissionActionInterface){
+        Retrofit retrofit = RetrofitBuilder.build(GsonConverterFactory.create());
         SubmissionServiceAPI submissionServiceAPI = retrofit.create(SubmissionServiceAPI.class);
         Log.i("App", "Submission ID: " + id);
-        submissionServiceAPI.doCorrection(token, id).enqueue(new Callback<String>() {
+        submissionServiceAPI.doCorrection(token, id).enqueue(new Callback<Correction>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Correction> call, Response<Correction> response) {
                 if (response.isSuccessful()){
                     Log.i("App", "Deu certo! \n Body: " + response.body());
+                    submissionActionInterface.OnSubmissionCorrection(response.body());
                 }else {
                     try {
                         Log.i("App", "Erro Correction Submission:  " + response.errorBody().string());
@@ -38,7 +40,7 @@ public class SubmissionModel {
                 }
             }
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Correction> call, Throwable t) {
                 Log.i("App", "Falhou EditExercise: " + t.getMessage());
             }
         });

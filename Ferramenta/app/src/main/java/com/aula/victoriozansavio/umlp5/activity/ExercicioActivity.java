@@ -58,11 +58,9 @@ public class ExercicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i;
-                if(exercise.getType() == 1){
-                    i = new Intent(getBaseContext(), CasoDeUsoActivity.class);
-                }else {
-                    i = new Intent(getBaseContext(), ClasseActivity.class);
-                }
+
+                i = new Intent(getBaseContext(), CasoDeUsoActivity.class);
+
                 i.putExtra("exercise", exercise);
                 i.putExtra("salvar", true);
                 i.putExtra("sub", true);

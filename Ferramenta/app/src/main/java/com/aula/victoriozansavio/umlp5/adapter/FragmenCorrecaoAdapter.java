@@ -7,8 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.aula.victoriozansavio.umlp5.Sketch;
-import com.aula.victoriozansavio.umlp5.component.UseCase;
-import com.aula.victoriozansavio.umlp5.fragment.ContainerFragment;
+
 
 import java.util.ArrayList;
 
@@ -22,24 +21,26 @@ public class FragmenCorrecaoAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
     private Sketch sketch;
+    private ArrayList<PFragment> fragmentArrayList;
 
-    public FragmenCorrecaoAdapter(FragmentManager fm, Context context) {
+    public FragmenCorrecaoAdapter(FragmentManager fm, Context context, ArrayList<PFragment> fragmentArrayList) {
         super(fm);
         this.context = context;
+        this.fragmentArrayList = fragmentArrayList;
     }
 
     @Override
     public Fragment getItem(int position) {
-
-
-        sketch = new Sketch(context);
+        /*sketch = new Sketch(context);
         PFragment fragment = new PFragment(sketch);
-        return fragment;
+        return fragment;*/
+        return fragmentArrayList.get(position);
+
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return fragmentArrayList.size();
     }
 
 

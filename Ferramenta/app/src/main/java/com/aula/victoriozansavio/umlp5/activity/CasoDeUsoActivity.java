@@ -1,6 +1,7 @@
 package com.aula.victoriozansavio.umlp5.activity;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.v4.content.ContextCompat;
@@ -9,36 +10,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aula.victoriozansavio.umlp5.API.SubmissionServiceAPI;
+
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.Sketch;
 import com.aula.victoriozansavio.umlp5.inteface.ExerciseActionInterface;
 import com.aula.victoriozansavio.umlp5.inteface.SubmissionActionInterface;
+import com.aula.victoriozansavio.umlp5.library.Correction;
 import com.aula.victoriozansavio.umlp5.model.ExerciseModel;
 import com.aula.victoriozansavio.umlp5.model.SubmissionModel;
-import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.util.Utils;
 import com.aula.victoriozansavio.umlp5.inteface.UserActionInterface;
 import com.aula.victoriozansavio.umlp5.library.Exercise;
 import com.aula.victoriozansavio.umlp5.library.Submission;
 import com.aula.victoriozansavio.umlp5.library.User;
 import com.aula.victoriozansavio.umlp5.model.UserModel;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import processing.android.PFragment;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClickListener, UserActionInterface, ExerciseActionInterface, SubmissionActionInterface {
 
@@ -49,6 +43,9 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
     ImageView ivExtend;
     ImageView ivAnotation;
     ImageView ivAssociation;
+    ImageView ivVoltar;
+    TextView tvVoltar;
+    TextView tvLerTexto;
 
     ImageView ivSave;
     ArrayList<ImageView> toolsIcons = new ArrayList<>();
@@ -64,8 +61,12 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
 
     String text = "";
 
+
+
     boolean salvar;
     boolean sub;
+
+    Submission savedSubmission = new Submission();
 
     private Sketch sketch;
     @Override
@@ -91,7 +92,11 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         if(salvar){
             sketch = new Sketch(this);
         }else {
-            sketch = new Sketch(this, exercise.getJson());
+
+            String exerciseJson = exercise.getJson();
+            exerciseJson = exerciseJson.substring(1, exerciseJson.length() - 1);
+            exerciseJson = exerciseJson.replaceAll("\\\\", "");
+            sketch = new Sketch(this, exerciseJson);
         }
 
         PFragment fragment = new PFragment(sketch);
@@ -99,6 +104,27 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
     }
 
 
+    private void showTexto(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_exercicio);
+        dialog.setCanceledOnTouchOutside(false);
+        TextView tvDescricao = dialog.findViewById(R.id.dialog_exercicio_tvDescricao);
+        TextView tvTitulo = dialog.findViewById(R.id.dialog_exercicio_tvTitulo);
+        Button btnFechar = dialog.findViewById(R.id.dialog_exercicio_btnFechar);
+
+        tvDescricao.setText(exercise.getDescription());
+        tvTitulo.setText(exercise.getTitle());
+
+        btnFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
 
     private void initViews(){
         ivUseCase = (ImageView) findViewById(R.id.ivUseCase );
@@ -110,6 +136,24 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
         ivSave = (ImageView) findViewById(R.id.activity_case_ivSave);
         tvNomeExer = (TextView) findViewById(R.id.activity_use_case_tvTitle);
         ivAssociation = findViewById(R.id.ivAssociation);
+        ivVoltar = findViewById(R.id.activity_case_ivVoltar);
+        tvVoltar = findViewById(R.id.activity_case_tvVoltar);
+        tvLerTexto = (TextView) findViewById(R.id.activity_case_btnLerTexto);
+
+        tvLerTexto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTexto();
+            }
+        });
+
+        ivVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.redirectToLoginPage(getBaseContext());
+                finish();
+            }
+        });
 
         tvNomeExer.setText(exercise.getTitle());
 
@@ -258,7 +302,20 @@ public class CasoDeUsoActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void OnSubmissionSaved(Submission submission) {
-        Log.i("App", "Correction: " + submission.getId());
-        SubmissionModel.doCorrection(token, submission.getId());
+        Log.i("App", "Correction: " + submission.getJson());
+        savedSubmission = submission;
+        /*Intent i = new Intent(this, CorrecaoActivity.class);
+        i.putExtra("submission", savedSubmission);
+        startActivity(i);
+        finish();*/
+        Intent i = new Intent(this, SubmissoesActivity.class);
+        //i.putExtra("submission", savedSubmission);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void OnSubmissionCorrection(Correction correction) {
+
     }
 }

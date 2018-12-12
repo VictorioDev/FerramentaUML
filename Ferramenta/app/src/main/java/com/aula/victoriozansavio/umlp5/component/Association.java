@@ -42,7 +42,7 @@ public class Association {
 
         this.setDrawContainer(drawContainer);
 
-        this.setStroke(4);
+        this.setStroke(2);
         this.setColor("#000000");
     }
 

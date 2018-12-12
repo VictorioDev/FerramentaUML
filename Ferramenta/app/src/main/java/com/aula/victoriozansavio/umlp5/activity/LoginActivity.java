@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements UserActionInterf
                 edtEmail.setText(bundle.getString("email"));
                 edtSenha.requestFocus();
             }
+            changeTint();
         }
 
 
@@ -206,13 +207,13 @@ public class LoginActivity extends AppCompatActivity implements UserActionInterf
 
         if(passwordView){
             ivPassword.setColorFilter(ContextCompat.getColor(getBaseContext(),
-                    R.color.colorAccent));
-            edtSenha.setInputType( InputType.TYPE_CLASS_TEXT |
-                    InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        }else {
-            ivPassword.setColorFilter(ContextCompat.getColor(getBaseContext(),
                     R.color.colorPrimary));
             edtSenha.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }else {
+            ivPassword.setColorFilter(ContextCompat.getColor(getBaseContext(),
+                    R.color.colorAccent));
+
+            edtSenha.setInputType( InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
         }
 
         passwordView = !passwordView;

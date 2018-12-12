@@ -4,7 +4,9 @@ package com.aula.victoriozansavio.umlp5.library;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Submission {
+import java.io.Serializable;
+
+public class Submission implements Serializable {
 
     @SerializedName("_id")
     @Expose

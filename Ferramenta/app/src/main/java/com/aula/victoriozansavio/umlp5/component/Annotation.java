@@ -1,5 +1,7 @@
 package com.aula.victoriozansavio.umlp5.component;
 
+import android.graphics.Color;
+
 import com.google.gson.annotations.Expose;
 
 import processing.core.PApplet;
@@ -32,18 +34,19 @@ public class Annotation {
         this.x = x;
         this.y = y;
         this.text = text;
-        this.size = 18f;
+        this.size = 20f;
         this.drawContainer = drawContainer;
     }
 
 
     public Annotation() {
-        this.size = 18f;
+        this.size = 20f;
     }
 
     public void draw() {
         if( this.text.isEmpty() ) return;
         drawContainer.noStroke();
+        drawContainer.fill(Color.parseColor("#000000"));
         drawContainer.textAlign(PConstants.LEFT);
         drawContainer.textSize( this.size * drawContainer.displayDensity );
         drawContainer.text( this.text, this.x, this.y);

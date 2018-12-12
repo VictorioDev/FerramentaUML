@@ -63,11 +63,9 @@ public class CadastroExercicioActivity extends AppCompatActivity {
                 if(validaCampos()){
                     Intent i;
                     Exercise exercise = buildObject();
-                    if(exercise.getType() == 1){
-                        i = new Intent(getBaseContext(), CasoDeUsoActivity.class);
-                    }else {
-                        i = new Intent(getBaseContext(), ClasseActivity.class);
-                    }
+
+                    i = new Intent(getBaseContext(), CasoDeUsoActivity.class);
+
 
                     i.putExtra("exercise", exercise);
                     i.putExtra("salvar", salvar);

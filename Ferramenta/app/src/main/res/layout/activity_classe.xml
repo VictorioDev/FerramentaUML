@@ -112,7 +112,7 @@
             >
 
             <ImageView
-                android:id="@+id/ivPointer"
+                android:id="@+id/activity_classe_iv_Pointer"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 />
 
             <ImageView
-                android:id="@+id/ivUseCase"
+                android:id="@+id/activity_classe_ivUseCase"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -130,8 +130,8 @@
                 />
 
             <ImageView
+                android:id="@+id/activity_classe_ivLiga"
                 android:layout_weight="1"
-                android:id="@+id/ivActor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow"

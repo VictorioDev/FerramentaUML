@@ -11,25 +11,24 @@
             android:padding="16dp"
             android:background="#fafafa"
             >
-
-
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:id="@+id/iv_main_voltar"
+                android:id="@+id/activity_case_ivVoltar"
                 android:src="@drawable/ic_back"
                 android:layout_alignParentLeft="true"
                 android:layout_marginRight="10dp"
                 android:layout_centerVertical="true"
                 />
             <TextView
+                android:id="@+id/activity_case_tvVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/iv_main_voltar"
+                android:layout_toRightOf="@id/activity_case_ivVoltar"
                 android:text="Voltar"
                 android:textSize="@dimen/menu_font_size"
-                android:layout_alignTop="@id/iv_main_voltar"
-                android:layout_alignBottom="@id/iv_main_voltar"
+                android:layout_alignTop="@id/activity_case_ivVoltar"
+                android:layout_alignBottom="@id/activity_case_ivVoltar"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 />
@@ -85,6 +84,7 @@
                     android:textSize="@dimen/menu_font_size" />
 
                 <TextView
+                    android:id="@+id/activity_case_btnLerTexto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

@@ -16,12 +16,6 @@
         android:text="Paulo Souza Cardoso"
         />
 
-    <TextView
-        android:id="@+id/activity_busca_exercicioR_tvQtdExer"
-        android:text="1 exercício(s)"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <EditText
         android:id="@+id/activity_busca_exercicioR_edtExer"
         android:hint="Busque um exercício específico..."

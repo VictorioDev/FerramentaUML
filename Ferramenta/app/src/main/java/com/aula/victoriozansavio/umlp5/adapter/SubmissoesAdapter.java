@@ -1,6 +1,7 @@
 package com.aula.victoriozansavio.umlp5.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.aula.victoriozansavio.umlp5.R;
+import com.aula.victoriozansavio.umlp5.activity.CorrecaoActivity;
 import com.aula.victoriozansavio.umlp5.library.Submission;
 
 
@@ -75,7 +77,9 @@ public class SubmissoesAdapter extends RecyclerView.Adapter<SubmissoesAdapter.My
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(context, CorrecaoActivity.class);
+                i.putExtra("submission", mDataset.get(position));
+                context.startActivity(i);
             }
         });
 

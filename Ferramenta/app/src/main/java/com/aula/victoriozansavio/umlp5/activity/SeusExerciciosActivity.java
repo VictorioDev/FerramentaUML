@@ -26,7 +26,6 @@ import java.util.List;
 public class SeusExerciciosActivity extends AppCompatActivity implements ExerciseActionInterface {
 
     TextView tvNome;
-    TextView tvQtdEx;
     EditText edtBuscaEx;
 
     ImageView ivNovo;
@@ -73,7 +72,6 @@ public class SeusExerciciosActivity extends AppCompatActivity implements Exercis
 
     private void initViews() {
         tvNome = findViewById(R.id.activity_seus_exercios_tvNome);
-        tvQtdEx = findViewById(R.id.activity_seus_exercios_tvQtdEx);
         edtBuscaEx = findViewById(R.id.activity_seus_exercios_edtBuscaEx);
         ivNovo = findViewById(R.id.activity_seus_exercios_ivNovo);
 

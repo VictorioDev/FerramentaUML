@@ -70,7 +70,7 @@ public class Utils {
     }
 
     public static void redirectToLoginPage(Context context){
-        Toast.makeText(context,"É necessário realizar Login!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"É necessário realizar Login!", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(context, LoginActivity.class);
         context.startActivity(i);
     }
