@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.aula.victoriozansavio.umlp5.activity.AlgoErradoActivity;
 import com.aula.victoriozansavio.umlp5.activity.LoginActivity;
 import com.aula.victoriozansavio.umlp5.library.LoginResult;
 
@@ -80,6 +81,11 @@ public class Utils {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.commit();
+    }
+
+    public static void redirectToWrong(Context context){
+        Intent i =  new Intent(context, AlgoErradoActivity.class);
+        context.startActivity(i);
     }
 
 }

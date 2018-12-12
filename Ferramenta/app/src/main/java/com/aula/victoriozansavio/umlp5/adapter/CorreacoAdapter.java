@@ -10,12 +10,13 @@ import android.widget.TextView;
 
 import com.aula.victoriozansavio.umlp5.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 
 public class CorreacoAdapter extends RecyclerView.Adapter<CorreacoAdapter.MyViewHolder> {
-    private List<String> mDataset;
+    private List<String> mDataset = new ArrayList<>();
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -34,8 +35,12 @@ public class CorreacoAdapter extends RecyclerView.Adapter<CorreacoAdapter.MyView
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CorreacoAdapter(List<String> userList, Context context) {
-        this.mDataset = userList;
+    public CorreacoAdapter(List<String> erros, Context context) {
+        this.mDataset = erros;
+        /*this.mDataset.add("O seu diagrama contém 1 casos de uso, mas o diagrama original contém 2.");
+        this.mDataset.add("No caso de uso Login, esperava-se que fosse escrito com pelo menos duas palavras. A primeira, um verbo que indique ação e o segundo, o caso em questão.");
+        this.mDataset.add("Esperava-se que a primeira palavra do caso Login fosse um verbo.");
+        this.mDataset.add("Você não cadastrou nenhum include. O diagrama original contém 1 includes.");*/
         this.context = context;
     }
 

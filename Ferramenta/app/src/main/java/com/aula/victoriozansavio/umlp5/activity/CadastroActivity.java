@@ -18,6 +18,7 @@ import com.aula.victoriozansavio.umlp5.API.UserServiceAPI;
 import com.aula.victoriozansavio.umlp5.R;
 import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.library.User;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 
 import java.io.IOException;
 
@@ -130,6 +131,7 @@ public class CadastroActivity extends AppCompatActivity {
                }else {
                    try {
                        Log.i("App", response.errorBody().string());
+                       Utils.redirectToWrong(getBaseContext());
                    } catch (IOException e) {
                        e.printStackTrace();
                    }
@@ -143,6 +145,7 @@ public class CadastroActivity extends AppCompatActivity {
                Log.i("App", t.getMessage());
                Toast.makeText(getBaseContext(), "Algo deu errado!", Toast.LENGTH_SHORT).show();
                progressDialog.dismiss();
+               Utils.redirectToWrong(getBaseContext());
            }
        });
 

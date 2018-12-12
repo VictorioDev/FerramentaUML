@@ -127,6 +127,7 @@ public class BuscaExercicioActivity extends AppCompatActivity {
                 }else {
                     try {
                         Log.i("App", "Erro:  " + response.errorBody().string());
+                        Utils.redirectToWrong(getBaseContext());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -136,6 +137,7 @@ public class BuscaExercicioActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Exercise>> call, Throwable t) {
                 Log.i("App", "Falhou: " + t.getMessage());
+                Utils.redirectToWrong(getBaseContext());
             }
         });
 

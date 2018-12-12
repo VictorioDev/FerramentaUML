@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 public class RetrofitBuilder {
 
     public static Retrofit build(Converter.Factory converter){
-        String BASE_URL = "http://192.168.0.108:3000/api/";
+        String BASE_URL = "http://faedu.com.br:3000/api/";
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(converter)

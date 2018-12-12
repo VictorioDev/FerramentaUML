@@ -6,10 +6,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="Faedu"
         android:name=".MyCustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:label="Faedu"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -25,7 +25,7 @@
         <activity
             android:name=".activity.CadastroActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ClasseActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -68,9 +68,7 @@
         <activity
             android:name=".activity.BuscaProfessorActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.HomePageProfessorActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -82,10 +80,9 @@
         <activity
             android:name=".activity.BuscaExercicioActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".activity.CadastroExercicioActivity"></activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.CadastroExercicioActivity" />
+        <activity android:name=".activity.AlgoErradoActivity"></activity>
     </application>
 
 </manifest>

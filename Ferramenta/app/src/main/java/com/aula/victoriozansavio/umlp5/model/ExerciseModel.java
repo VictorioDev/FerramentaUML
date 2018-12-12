@@ -6,6 +6,7 @@ import com.aula.victoriozansavio.umlp5.API.ExerciseServiceAPI;
 import com.aula.victoriozansavio.umlp5.util.RetrofitBuilder;
 import com.aula.victoriozansavio.umlp5.inteface.ExerciseActionInterface;
 import com.aula.victoriozansavio.umlp5.library.Exercise;
+import com.aula.victoriozansavio.umlp5.util.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class ExerciseModel {
                 }else {
                     try {
                         Log.i("App", "Erro:  " + response.errorBody().string());
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

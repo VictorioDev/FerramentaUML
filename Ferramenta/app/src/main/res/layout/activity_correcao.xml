@@ -71,7 +71,7 @@
             >
              <TextView
             android:textAlignment="center"
-            android:text="O seu diagrama está correto!
+            android:text="O seu diagrama contém erros!
 Verifique na aba de correção o diagrama feito pelo professor."
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
